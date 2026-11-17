@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>6.3 List and Dictionary Comprehensions | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 6 – Dictionaries, Sets and Comprehensions</a></nav></div></header>
+<main id="main">
+<h1>6.3 List and Dictionary Comprehensions</h1>
+<p><strong>Read:</strong> <em>Python Unlocked</em>, Chapter 6, "List Comprehensions" and "Dictionary Comprehensions"</p>
+<p>A <strong>comprehension</strong> builds a new list (or dictionary) in one readable line. It's a shortcut for the "loop and append" pattern you already know.</p><h3>From loop to comprehension</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code># The long way
+squares = []
+for n in range(1, 11):
+    squares.append(n ** 2)
+
+# The comprehension way: same result
+squares = [n ** 2 for n in range(1, 11)]
+print(squares)</code></pre>
+<p>Read it as: "<em>n squared</em>, for each <em>n</em> in 1 to 10."</p><h3>Filtering with if</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>scores = [45, 78, 92, 31, 65, 88, 22, 71]
+passing = [s for s in scores if s &gt;= 70]
+print(passing)</code></pre>
+<h3>Transforming with if/else</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>scores = [45, 78, 92, 31]
+results = ["Pass" if s &gt;= 70 else "Fail" for s in scores]
+print(results)</code></pre>
+<h3>A real-world use: cleaning data</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>raw_names = [" arjun ", "PRIYA", "rahul sharma", " SNEHA "]
+clean_names = [name.strip().title() for name in raw_names]
+print(clean_names)</code></pre>
+<h3>Dictionary comprehensions</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>students = ["Priya", "Rahul", "Sneha"]
+scores = [88, 72, 95]
+score_dict = {name: score for name, score in zip(students, scores)}
+print(score_dict)
+
+honor_roll = {name: score for name, score in score_dict.items() if score &gt;= 85}
+print(honor_roll)</code></pre>
+<div style="background:#e8f4fd; border-left:5px solid #1a73e8; padding:12px; border-radius:6px; margin:12px 0;"><p>Use a comprehension when it fits comfortably on one line. If you need several steps or nested <code>if</code>s, a regular loop is clearer.</p></div>
+<h3>Try it now</h3>
+<p>Open the <a href="https://colab.research.google.com/github/Arjun96DS/python-unlocked/blob/main/part1-python-foundations/ch06_data_structures.ipynb" target="_blank" rel="noopener">Chapter 6 notebook in Google Colab</a> and run the cells for this section with <strong>Shift + Enter</strong>.</p>
+<h3>Practice (from Chapter 6)</h3><ol><li>Use <code>zip()</code> to combine a list of product names and a list of prices into a dictionary. Print only the products over $50.</li><li>Write <code>word_frequency(sentence)</code> that returns a dictionary of each word and how many times it appears.</li><li>Use a list comprehension to find all numbers from 1 to 100 divisible by both 3 and 7, then a dictionary comprehension mapping each to its square.</li></ol>
+<nav class="pager" aria-label="Previous and next page"><a href="../m06/6-2-sets.html" rel="prev"><small>Previous</small>6.2 Sets</a><a href="../m07/index.html" rel="next" style="text-align:right"><small>Next</small>Module 7 – Working with Files</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

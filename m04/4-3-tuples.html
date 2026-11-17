@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>4.3 Tuples | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 4 – Lists and Tuples</a></nav></div></header>
+<main id="main">
+<h1>4.3 Tuples</h1>
+<p><strong>Read:</strong> <em>Python Unlocked</em>, Chapter 6, "Tuples"</p>
+<p>A <strong>tuple</strong> is like a list, but it <strong>can't be changed</strong> after it's created (it's <em>immutable</em>). Tuples use parentheses:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>coordinates = (35.0844, -106.6504)   # Albuquerque latitude, longitude
+rgb_color = (255, 128, 0)
+person = ("Arjun", 30, "Albuquerque")
+print(person[0])     # Arjun
+print(person[-1])    # Albuquerque
+print(rgb_color[1:]) # (128, 0)</code></pre>
+<div style="background:#fff4e5; border-left:5px solid #f29900; padding:12px; border-radius:6px; margin:12px 0;"><p>Trying to change a tuple, like <code>person[1] = 31</code>, gives a <code>TypeError</code>. That's the point: tuples protect data that shouldn't change.</p></div>
+<h3>A tuple with one item</h3><p>You need a trailing comma, otherwise Python treats the parentheses as normal math brackets:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>single = ("Python",)
+not_a_tuple = ("Python")
+print(type(single), type(not_a_tuple))</code></pre>
+<h3>Tuple unpacking</h3><p>You can pull the values out into separate variables in one line:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>person = ("Arjun", 30, "Albuquerque")
+name, age, city = person
+print(f"{name} is {age} and lives in {city}")</code></pre>
+<p>You've already seen this: when a function returns two values (<code>return min(x), max(x)</code>), it's really returning a tuple.</p><h3>Converting between lists and tuples</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>days = ("Mon", "Tue", "Wed")
+day_list = list(days)       # now changeable
+day_list.append("Thu")
+days = tuple(day_list)      # lock it again
+print(days)</code></pre>
+<h3>When to use a tuple instead of a list</h3><ul><li>The data is a fixed record that shouldn't change: coordinates, a date, RGB colors, a database row.</li><li>You're returning several values from a function.</li><li>Use a <strong>list</strong> when the collection will grow, shrink, or change.</li></ul><h3>Try it now</h3>
+<p>Open the <a href="https://colab.research.google.com/github/Arjun96DS/python-unlocked/blob/main/part1-python-foundations/ch06_data_structures.ipynb" target="_blank" rel="noopener">Chapter 6 notebook in Google Colab</a> and run the cells for this section with <strong>Shift + Enter</strong>.</p>
+<h3>Practice (from Chapter 6)</h3><ol><li>Create a list of ten numbers. Print the largest, smallest, sum, and average. Then print the top three values.</li><li>Store three cities as (name, latitude, longitude) tuples in a list. Loop through and unpack each one to print it.</li></ol>
+<nav class="pager" aria-label="Previous and next page"><a href="../m04/4-2-list-methods-and-looping-through-lists.html" rel="prev"><small>Previous</small>4.2 List Methods and Looping Through Lists</a><a href="../m05/index.html" rel="next" style="text-align:right"><small>Next</small>Module 5 – Working with Strings</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

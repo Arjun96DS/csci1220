@@ -1,0 +1,29 @@
+:root{--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--accent:#0b5cad;--bg:#fff;--soft:#f6f8fa}
+*{box-sizing:border-box}
+body{margin:0;font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:var(--accent)} a:focus,button:focus{outline:3px solid #f2a900;outline-offset:2px}
+.skip{position:absolute;left:-999px;top:0;background:#000;color:#fff;padding:8px 12px;z-index:10}
+.skip:focus{left:8px}
+header.site{border-bottom:1px solid var(--line);background:var(--soft)}
+header.site .inner{max-width:900px;margin:0 auto;padding:10px 20px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+header.site a.home{font-weight:700;text-decoration:none;color:var(--ink)}
+nav.crumbs{font-size:.9rem;color:var(--muted)}
+main{max-width:900px;margin:0 auto;padding:24px 20px 40px}
+h1{font-size:1.8rem;line-height:1.25;margin:.2em 0 .6em}
+h2{font-size:1.35rem;margin-top:1.6em} h3{font-size:1.2rem;margin-top:1.5em} h4{font-size:1.05rem}
+pre{overflow-x:auto;font-size:.92rem;line-height:1.45}
+code{font-family:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;font-size:.92em}
+:not(pre)>code{background:var(--soft);padding:1px 5px;border-radius:4px;overflow-wrap:anywhere}
+table{border-collapse:collapse;width:100%;margin:12px 0;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}
+th{background:var(--soft)}
+ol.lessons{padding-left:1.4em} ol.lessons li{margin:.35em 0}
+.card{border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin:14px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;padding:0;list-style:none}
+.grid li{border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.grid li a{font-weight:600}
+nav.pager{display:flex;justify-content:space-between;gap:12px;margin-top:40px;padding-top:16px;border-top:1px solid var(--line)}
+nav.pager a{display:block;max-width:48%;text-decoration:none}
+nav.pager small{display:block;color:var(--muted)}
+footer{max-width:900px;margin:0 auto;padding:16px 20px 40px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line)}
+@media print{header.site,nav.pager,.skip{display:none}}

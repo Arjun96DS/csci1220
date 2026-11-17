@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>11.3 More Widgets and Error Pop-ups | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 11 – Graphical User Interfaces</a></nav></div></header>
+<main id="main">
+<h1>11.3 More Widgets and Error Pop-ups</h1>
+<p><em>This module isn't covered in Python Unlocked. These pages are your reading.</em></p><div style="background:#fff4e5; border-left:5px solid #f29900; padding:12px; border-radius:6px; margin:12px 0;"><p><strong>Important:</strong> GUI programs open a window on your computer, so they <strong>do not run in Google Colab</strong>. For this module, use Python installed on your computer (Anaconda from Module 1 includes everything you need) and run your code in VS Code or IDLE. If you haven't installed Python yet, follow Option 2 on page 1.2.</p></div>
+<h3>More widgets</h3><table style="border-collapse:collapse; width:100%;" border="1" cellpadding="8"><thead><tr style="background:#f4f4f4;"><th>Widget</th><th>Use</th><th>Read its value</th></tr></thead><tbody><tr><td><code>Checkbutton</code></td><td>on/off option</td><td><code>var.get()</code> with a <code>tk.BooleanVar()</code></td></tr><tr><td><code>Spinbox</code></td><td>pick a number with up/down arrows</td><td><code>spin.get()</code> (a string)</td></tr><tr><td><code>Text</code></td><td>multi-line text area</td><td><code>text.get("1.0", "end")</code></td></tr><tr><td><code>messagebox</code></td><td>pop-up alerts</td><td><code>messagebox.showinfo()</code> / <code>showerror()</code></td></tr></tbody></table>
+<h3>Handling bad input with messagebox</h3><p>Combine <code>try/except</code> from Module 8 with a pop-up so your app never crashes:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>import tkinter as tk
+from tkinter import messagebox
+
+def convert():
+    try:
+        f = float(temp_entry.get())
+    except ValueError:
+        messagebox.showerror("Invalid input", "Please enter a number.")
+        return
+    c = (f - 32) * 5 / 9
+    result.config(text=f"{f:.1f} F = {c:.1f} C")
+
+window = tk.Tk()
+window.title("Temperature Converter")
+tk.Label(window, text="Temperature (F):").grid(row=0, column=0, padx=5, pady=5)
+temp_entry = tk.Entry(window)
+temp_entry.grid(row=0, column=1, padx=5)
+tk.Button(window, text="Convert", command=convert).grid(row=1, column=0, columnspan=2, pady=5)
+result = tk.Label(window, text="")
+result.grid(row=2, column=0, columnspan=2, pady=5)
+window.mainloop()</code></pre>
+<h3>Checkbuttons and Spinbox</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>import tkinter as tk
+
+def show_order():
+    size = size_spin.get()
+    extras = []
+    if cheese_var.get():
+        extras.append("extra cheese")
+    if spicy_var.get():
+        extras.append("spicy")
+    summary.config(text=f"{size}-inch pizza" + (f" with {', '.join(extras)}" if extras else ""))
+
+window = tk.Tk()
+window.title("Pizza Order")
+tk.Label(window, text="Size (inches):").pack()
+size_spin = tk.Spinbox(window, from_=8, to=18, increment=2, width=5)
+size_spin.pack()
+cheese_var = tk.BooleanVar()
+spicy_var = tk.BooleanVar()
+tk.Checkbutton(window, text="Extra cheese", variable=cheese_var).pack()
+tk.Checkbutton(window, text="Spicy", variable=spicy_var).pack()
+tk.Button(window, text="Order", command=show_order).pack(pady=5)
+summary = tk.Label(window, text="")
+summary.pack(pady=5)
+window.mainloop()</code></pre>
+<h3>Copying to the clipboard</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>import tkinter as tk
+window = tk.Tk()
+def copy_text():
+    window.clipboard_clear()
+    window.clipboard_append("Copied from Python!")
+tk.Button(window, text="Copy", command=copy_text).pack(padx=40, pady=20)
+window.mainloop()</code></pre>
+<h3>Practice</h3><ol><li>Build a GUI unit converter (miles ↔ kilometers) with a Spinbox or Entry, a Convert button, and error handling.</li><li>Build a to-do app: an Entry, an Add button, and a multi-line <code>Text</code> area that shows the list.</li></ol>
+<nav class="pager" aria-label="Previous and next page"><a href="../m11/11-2-getting-input-and-laying-out-a-form.html" rel="prev"><small>Previous</small>11.2 Getting Input and Laying Out a Form</a><a href="../m11/11-4-sending-your-work-to-github-from-your-computer.html" rel="next" style="text-align:right"><small>Next</small>11.4 Sending Your Work to GitHub from Your Computer</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

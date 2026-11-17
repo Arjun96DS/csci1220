@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1.5 Comments, Print and Input | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 1 – Getting Started &amp; Python Basics</a></nav></div></header>
+<main id="main">
+<h1>1.5 Comments, Print and Input</h1>
+<p><strong>Read:</strong> <em>Python Unlocked</em>, Chapter 3 (Comments; Print and Input)</p>
+
+<h3>Comments</h3>
+<p>A <strong>comment</strong> starts with <code>#</code>. Python ignores it. Comments are notes for humans, explaining what your code does.</p>
+<pre style="background:#f4f4f4; padding:12px; border-radius:6px;"><code># This is a comment. Python will not run this line
+print("But Python will run this line")
+
+age = 25  # Storing the user's age</code></pre>
+<p>Get in the habit now: <strong>every program you submit in this course should have comments</strong> explaining what each part does.</p>
+
+<h3>print(): showing output</h3>
+<p><code>print()</code> displays text, numbers, or variables on the screen:</p>
+<pre style="background:#f4f4f4; padding:12px; border-radius:6px;"><code>print("Hello World")
+print(42)
+print(3.14)
+
+name = "Arjun"
+age = 30
+city = "Albuquerque"
+print(name, age, city)   # Arjun 30 Albuquerque</code></pre>
+
+<h3>f-strings: the easy way to mix text and variables</h3>
+<p>Put an <code>f</code> before the quotes, then put variables inside <code>{ }</code>:</p>
+<pre style="background:#f4f4f4; padding:12px; border-radius:6px;"><code>print(f"My name is {name}, I am {age} years old and I live in {city}.")</code></pre>
+<p>You can even do math inside the braces:</p>
+<pre style="background:#f4f4f4; padding:12px; border-radius:6px;"><code>price = 1200
+discount = 0.10
+print(f"Original price: {price}")
+print(f"Discount amount: {price * discount}")
+print(f"Final price: {price - (price * discount)}")</code></pre>
+
+<h3>input(): getting information from the user</h3>
+<p><code>input()</code> shows a question, waits for the user to type, and gives back what they typed:</p>
+<pre style="background:#f4f4f4; padding:12px; border-radius:6px;"><code>user_name = input("What is your name? ")
+print(f"Hello {user_name}, great to meet you!")</code></pre>
+
+<div style="background:#fff4e5; border-left:5px solid #f29900; padding:12px; border-radius:6px; margin:12px 0;">
+<p><strong>Important:</strong> <code>input()</code> <em>always</em> gives you a <strong>string</strong>, even if the user types a number. To do math with it, convert it first with <code>int()</code> or <code>float()</code>.</p>
+</div>
+<pre style="background:#f4f4f4; padding:12px; border-radius:6px;"><code>user_age = input("How old are you? ")
+user_age = int(user_age)          # convert text to a whole number
+next_birthday = user_age + 1
+print(f"On your next birthday you will be {next_birthday} years old.")</code></pre>
+
+<h3>Try it now</h3>
+<p>Open the <a href="https://colab.research.google.com/github/Arjun96DS/python-unlocked/blob/main/part1-python-foundations/ch03_python_basics.ipynb" target="_blank" rel="noopener">Chapter 3 notebook in Google Colab</a> and run every cell from top to bottom. When a cell uses <code>input()</code>, a box appears below it. Type your answer and press Enter.</p>
+
+<h3>Practice (from Chapter 3)</h3>
+<ol>
+<li>Create variables for your full name, age, city, and favorite subject. Print one sentence using an f-string that includes all four.</li>
+<li>Ask the user for two numbers, convert both to floats, and print their sum, difference, product, and quotient using f-strings.</li>
+<li>Create three booleans: <code>is_employed</code>, <code>has_degree</code>, <code>has_experience</code>. Use <code>and</code>, <code>or</code>, and <code>not</code> to print: Is the person employed <em>and</em> has a degree? Has a degree <em>or</em> experience? <em>Not</em> employed?</li>
+<li>Ask for a monthly salary. Print the annual salary, the amount after a 15% tax deduction, and the total tax paid.</li>
+</ol>
+<p>These practice problems aren't graded. They're your warm-up for the Module 1 Program.</p>
+
+<nav class="pager" aria-label="Previous and next page"><a href="../m01/1-4-operators.html" rel="prev"><small>Previous</small>1.4 Operators</a><a href="../m02/index.html" rel="next" style="text-align:right"><small>Next</small>Module 2 – Control Flow</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

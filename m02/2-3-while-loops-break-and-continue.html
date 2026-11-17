@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2.3 while Loops, break and continue | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 2 – Control Flow</a></nav></div></header>
+<main id="main">
+<h1>2.3 while Loops, break and continue</h1>
+<p><strong>Read:</strong> <em>Python Unlocked</em>, Chapter 4, "while Loops" and "break and continue"</p>
+<p>A <code>while</code> loop keeps running <strong>as long as its condition is True</strong>. Use it when you don't know in advance how many times to repeat, such as "keep asking until the user gets it right."</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>count = 1
+while count &lt;= 5:
+    print(f"Count is currently: {count}")
+    count += 1</code></pre>
+<div style="background:#fff4e5; border-left:5px solid #f29900; padding:12px; border-radius:6px; margin:12px 0;"><p>If the condition never becomes <code>False</code>, the loop runs forever (an <strong>infinite loop</strong>). Here, forgetting <code>count += 1</code> would do that. In Colab, click the stop button next to the cell to break out.</p></div>
+<h3>Example: a guessing game</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>secret_number = 7
+guess = 0
+while guess != secret_number:
+    guess = int(input("Guess the secret number between 1 and 10: "))
+    if guess == secret_number:
+        print("You got it! Well done!")
+    elif guess &lt; secret_number:
+        print("Too low! Try again.")
+    else:
+        print("Too high! Try again.")</code></pre>
+<h3>break: stop the loop early</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>transactions = [450, 230, 1200, 89, 3400, 670, 150]
+threshold = 1000
+for amount in transactions:
+    if amount &gt; threshold:
+        print(f"First large transaction found: ${amount}")
+        break</code></pre>
+<h3>continue: skip to the next item</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>scores = [85, 92, -1, 78, -1, 95, 60, -1, 88]
+total = 0
+valid_count = 0
+for score in scores:
+    if score == -1:
+        print("Missing score found - skipping.")
+        continue
+    total += score
+    valid_count += 1
+print(f"Valid scores processed: {valid_count}")
+print(f"Average score: {total / valid_count:.2f}")</code></pre>
+<p><code>{total / valid_count:.2f}</code> shows the number with 2 decimal places.</p><h3>The while True / break pattern (input validation)</h3><p>A very common real-world pattern: keep asking until the input is valid.</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>while True:
+    age = input("Please enter your age: ")
+    if age.isdigit():
+        age = int(age)
+        print(f"Thank you! You are {age} years old.")
+        break
+    else:
+        print("That does not look like a valid age. Please enter numbers only.")</code></pre>
+<h3>Try it now</h3>
+<p>Open the <a href="https://colab.research.google.com/github/Arjun96DS/python-unlocked/blob/main/part1-python-foundations/ch04_control_flow.ipynb" target="_blank" rel="noopener">Chapter 4 notebook in Google Colab</a> and run the cells for this section with <strong>Shift + Enter</strong>.</p>
+<h3>Practice (from Chapter 4)</h3><ol><li>Ask for a monthly income and print the tax bracket: under 25,000 no tax; 25,000–50,000 is 10%; 50,000–100,000 is 20%; above 100,000 is 30%.</li><li>Print the multiplication table (1–10) for any number the user enters.</li><li>Keep asking for a password until the user types <code>python2024</code>. Print how many attempts it took.</li><li><strong>FizzBuzz</strong> (a classic job-interview question): for 1–50, print Fizz for multiples of 3, Buzz for multiples of 5, FizzBuzz for both, otherwise the number.</li></ol>
+<nav class="pager" aria-label="Previous and next page"><a href="../m02/2-2-for-loops-and-range.html" rel="prev"><small>Previous</small>2.2 for Loops and range</a><a href="../m03/index.html" rel="next" style="text-align:right"><small>Next</small>Module 3 – Functions and Scope</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

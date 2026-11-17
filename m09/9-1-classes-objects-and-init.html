@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9.1 Classes, Objects and __init__ | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 9 – Object-Oriented Programming</a></nav></div></header>
+<main id="main">
+<h1>9.1 Classes, Objects and __init__</h1>
+<p><strong>Read:</strong> <em>Python Unlocked</em>, Chapter 8, "Classes and Objects"</p>
+<p>So far you've organized programs with functions. <strong>Object-oriented programming (OOP)</strong> organizes them around <strong>objects</strong>, bundles of data plus the functions that work on that data. Most large software (games, banking systems, web apps) is built this way.</p><ul><li>A <strong>class</strong> is a blueprint (like the design for a car).</li><li>An <strong>object</strong> is one thing built from the blueprint (your specific car). You can make many objects from one class.</li></ul><h3>Your first class</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>class Student:
+    def __init__(self, name, age, gpa):
+        self.name = name
+        self.age = age
+        self.gpa = gpa
+
+student1 = Student("Priya Sharma", 22, 3.85)
+student2 = Student("Rahul Verma", 20, 3.42)
+print(student1.name, student1.gpa)
+print(student2.name, student2.gpa)</code></pre>
+<h3>What's going on</h3><ul><li><code>class Student:</code> defines the blueprint. Class names use CapitalWords.</li><li><code>__init__</code> is the <strong>constructor</strong>. It runs automatically every time you create an object and sets up its starting data.</li><li><code>self</code> means "this particular object". <code>self.name = name</code> stores the name <em>inside</em> the object.</li><li><code>self.name</code>, <code>self.age</code>, and <code>self.gpa</code> are <strong>attributes</strong>, the object's data.</li></ul><h3>Changing an attribute</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>class Student:
+    def __init__(self, name, age, gpa):
+        self.name = name
+        self.age = age
+        self.gpa = gpa
+
+student1 = Student("Priya Sharma", 22, 3.85)
+student1.gpa = 3.90
+print(student1.gpa)</code></pre>
+<h3>Why bother? Encapsulation and DRY</h3><p>Keeping the data and the code that uses it together is called <strong>encapsulation</strong>. Writing a blueprint once and reusing it follows the <strong>DRY</strong> principle: <em>Don't Repeat Yourself</em>.</p><h3>Check your understanding</h3>
+<ol><li>What's the difference between a class and an object?</li><li>What does <code>self</code> refer to?</li><li>Write a <code>Book</code> class with title, author, and pages. Create two books and print their titles.</li></ol>
+
+<nav class="pager" aria-label="Previous and next page"><a href="../m09/index.html" rel="prev"><small>Previous</small>Module 9 – Object-Oriented Programming</a><a href="../m09/9-2-methods-str-and-class-attributes.html" rel="next" style="text-align:right"><small>Next</small>9.2 Methods, __str__ and Class Attributes</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

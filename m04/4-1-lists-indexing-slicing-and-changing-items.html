@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>4.1 Lists – Indexing, Slicing and Changing Items | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 4 – Lists and Tuples</a></nav></div></header>
+<main id="main">
+<h1>4.1 Lists – Indexing, Slicing and Changing Items</h1>
+<p><strong>Read:</strong> <em>Python Unlocked</em>, Chapter 6, "Lists" (Indexing, Slicing, Modifying Lists)</p>
+<p>A <strong>list</strong> stores many values in one variable, in order. Use square brackets and separate items with commas:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>fruits = ["apple", "banana", "mango", "orange", "grapes"]
+numbers = [10, 25, 3, 78, 42, 15]
+mixed = ["Arjun", 30, True, 3.14]
+print(fruits)</code></pre>
+<h3>Indexing: getting one item</h3><p>Each item has a position number called an <strong>index</strong>. Counting starts at <strong>0</strong>. Negative indexes count from the end:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>fruits = ["apple", "banana", "mango", "orange", "grapes"]
+print(fruits[0])    # apple   (first)
+print(fruits[4])    # grapes
+print(fruits[-1])   # grapes  (last)
+print(fruits[-2])   # orange  (second to last)</code></pre>
+<table style="border-collapse:collapse; width:100%;" border="1" cellpadding="8"><thead><tr style="background:#f4f4f4;"><th>Index</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th></tr></thead><tbody><tr><td>Item</td><td>apple</td><td>banana</td><td>mango</td><td>orange</td><td>grapes</td></tr><tr><td>Negative index</td><td>-5</td><td>-4</td><td>-3</td><td>-2</td><td>-1</td></tr></tbody></table>
+<div style="background:#fff4e5; border-left:5px solid #f29900; padding:12px; border-radius:6px; margin:12px 0;"><p><code>fruits[5]</code> gives an <code>IndexError</code>: a 5-item list only goes up to index 4.</p></div>
+<h3>Slicing: getting several items</h3><p><code>list[start:stop]</code> gives the items from <code>start</code> up to, but <strong>not including</strong>, <code>stop</code>:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>fruits = ["apple", "banana", "mango", "orange", "grapes"]
+print(fruits[1:4])   # ['banana', 'mango', 'orange']
+print(fruits[:3])    # first three
+print(fruits[2:])    # from index 2 to the end
+print(fruits[-3:])   # last three
+print(fruits[::-1])  # reversed copy</code></pre>
+<h3>Changing, adding, and removing items</h3><p>Lists are <strong>mutable</strong>: you can change them after creating them.</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>cart = ["laptop", "mouse", "keyboard"]
+cart[1] = "wireless mouse"      # change an item
+cart.append("monitor")          # add to the end
+cart.insert(0, "laptop bag")    # add at a position
+cart.extend(["usb hub", "webcam"])  # add several
+print(cart)
+
+cart.remove("keyboard")         # remove by value
+last = cart.pop()               # remove and return the last item
+first = cart.pop(0)             # remove and return item at index 0
+print(f"Removed {last} and {first}")
+print(cart)</code></pre>
+<h3>Check your understanding</h3>
+<ol><li>Given <code>days = ["Mon", "Tue", "Wed", "Thu", "Fri"]</code>, what is <code>days[1:3]</code>? What is <code>days[-1]</code>?</li><li>What's the difference between <code>append()</code> and <code>extend()</code>?</li><li>Write code that removes the first item of a list and adds it to the end.</li></ol>
+
+<nav class="pager" aria-label="Previous and next page"><a href="../m04/index.html" rel="prev"><small>Previous</small>Module 4 – Lists and Tuples</a><a href="../m04/4-2-list-methods-and-looping-through-lists.html" rel="next" style="text-align:right"><small>Next</small>4.2 List Methods and Looping Through Lists</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9.3 Inheritance | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 9 – Object-Oriented Programming</a></nav></div></header>
+<main id="main">
+<h1>9.3 Inheritance</h1>
+<p><strong>Read:</strong> <em>Python Unlocked</em>, Chapter 8, "Inheritance"</p>
+<p><strong>Inheritance</strong> lets you create a new class based on an existing one. The new <strong>child</strong> class gets everything from the <strong>parent</strong> class, and can add or change things.</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>class Student:
+    def __init__(self, name, gpa):
+        self.name = name
+        self.gpa = gpa
+
+    def introduce(self):
+        print(f"Hi, I am {self.name}.")
+
+    def __str__(self):
+        return f"Student: {self.name} | GPA: {self.gpa}"
+
+
+class GraduateStudent(Student):          # GraduateStudent inherits from Student
+    def __init__(self, name, gpa, thesis_topic):
+        super().__init__(name, gpa)      # let the parent set name and gpa
+        self.thesis_topic = thesis_topic # then add what's new
+
+    def introduce(self):                 # override (replace) the parent's version
+        super().introduce()
+        print(f"My thesis is on {self.thesis_topic}.")
+
+
+grad = GraduateStudent("Sneha Patel", 3.91, "Cloud Security")
+grad.introduce()
+print(grad)          # __str__ was inherited from Student</code></pre>
+<h3>Key ideas</h3><ul><li><code>class GraduateStudent(Student):</code> means "a GraduateStudent <em>is a</em> Student."</li><li><code>super().__init__(...)</code> runs the parent's constructor so you don't repeat that code (DRY).</li><li><strong>Overriding:</strong> if the child defines a method with the same name, the child's version is used.</li><li>Methods the child doesn't define (like <code>__str__</code> here) come from the parent automatically.</li></ul><h3>Checking an object's type</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>class Animal:
+    def __init__(self, name):
+        self.name = name
+
+class Dog(Animal):
+    def speak(self):
+        return "Woof!"
+
+pets = [Dog("Rex"), Animal("Generic")]
+for pet in pets:
+    if isinstance(pet, Dog):
+        print(f"{pet.name} says {pet.speak()}")
+    else:
+        print(f"{pet.name} is quiet.")</code></pre>
+<h3>Try it now</h3>
+<p>Open the <a href="https://colab.research.google.com/github/Arjun96DS/python-unlocked/blob/main/part1-python-foundations/ch08_object_oriented_programming.ipynb" target="_blank" rel="noopener">Chapter 8 notebook in Google Colab</a> and run the cells for this section with <strong>Shift + Enter</strong>.</p>
+<h3>Practice (from Chapter 8)</h3><ol><li>Create a <code>Vehicle</code> class (make, model, year) and an <code>ElectricVehicle</code> child class that adds <code>battery_range</code> and overrides <code>__str__</code>.</li><li>Add a <code>SavingsAccount</code> child of <code>BankAccount</code> with an <code>add_interest(rate)</code> method.</li></ol>
+<nav class="pager" aria-label="Previous and next page"><a href="../m09/9-2-methods-str-and-class-attributes.html" rel="prev"><small>Previous</small>9.2 Methods, __str__ and Class Attributes</a><a href="../m10/index.html" rel="next" style="text-align:right"><small>Next</small>Module 10 – Useful Python Libraries</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

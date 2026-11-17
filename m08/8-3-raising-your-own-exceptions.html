@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>8.3 Raising Your Own Exceptions | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 8 – Handling Errors and Exceptions</a></nav></div></header>
+<main id="main">
+<h1>8.3 Raising Your Own Exceptions</h1>
+<p><strong>Read:</strong> <em>Python Unlocked</em>, Chapter 7, "Raising Your Own Exceptions"</p>
+<p>Sometimes the data is technically valid Python but makes no sense for your program: a negative age, a price of $0, a quantity of -3. You can <strong>raise</strong> your own exception to stop bad data:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>def set_age(age):
+    if age &lt; 0:
+        raise ValueError("Age cannot be negative!")
+    if age &gt; 150:
+        raise ValueError("Age value is unrealistically high!")
+    return age
+
+try:
+    print(set_age(25))
+    print(set_age(-5))
+except ValueError as error:
+    print(f"Invalid age: {error}")</code></pre>
+<p>Notice the split: the function <em>detects</em> the problem and raises; the code that calls it <em>decides</em> what to do about it. That's how professional code is organized.</p><h3>A real-world example: validating an order</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>def validate_order(product, quantity, price):
+    if product.strip() == "":
+        raise ValueError("product name is missing")
+    if quantity &lt;= 0:
+        raise ValueError(f"quantity must be positive, got {quantity}")
+    if price &lt;= 0:
+        raise ValueError(f"price must be positive, got {price}")
+    return quantity * price
+
+orders = [("Webcam", 2, 59.00), ("", 1, 10.00), ("Mouse", -1, 24.50)]
+for product, qty, price in orders:
+    try:
+        total = validate_order(product, qty, price)
+        print(f"OK: {product} x{qty} = ${total:.2f}")
+    except ValueError as error:
+        print(f"Rejected: {error}")</code></pre>
+<div style="background:#e8f4fd; border-left:5px solid #1a73e8; padding:12px; border-radius:6px; margin:12px 0;"><p>This is exactly how data pipelines work in industry: good records go through, bad records are rejected <em>with a reason</em>, and the program keeps running. You'll build one in the assignment.</p></div>
+<h3>Try it now</h3>
+<p>Open the <a href="https://colab.research.google.com/github/Arjun96DS/python-unlocked/blob/main/part1-python-foundations/ch07_files_and_errors.ipynb" target="_blank" rel="noopener">Chapter 7 notebook in Google Colab</a> and run the cells for this section with <strong>Shift + Enter</strong>.</p>
+<h3>Practice</h3><ol><li>Write <code>withdraw(balance, amount)</code> that raises <code>ValueError</code> if the amount is negative or more than the balance. Call it inside <code>try/except</code>.</li><li>Write a program that reads numbers from a file, one per line, skipping (and counting) any lines that aren't valid numbers.</li></ol>
+<nav class="pager" aria-label="Previous and next page"><a href="../m08/8-2-multiple-exceptions-else-and-finally.html" rel="prev"><small>Previous</small>8.2 Multiple Exceptions, else and finally</a><a href="../m09/index.html" rel="next" style="text-align:right"><small>Next</small>Module 9 – Object-Oriented Programming</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

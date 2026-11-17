@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1.2 Setting Up Your Environment | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 1 – Getting Started &amp; Python Basics</a></nav></div></header>
+<main id="main">
+<h1>1.2 Setting Up Your Environment</h1>
+<p><strong>Read:</strong> <em>Python Unlocked</em>, Chapter 2</p>
+
+<p>Before we write real programs, we need a place to write and run Python code. In this course you have two options. <strong>Start with Option 1.</strong> Option 2 is optional for now.</p>
+
+<div style="background:#e8f4fd; border-left:5px solid #1a73e8; padding:12px; border-radius:6px; margin:12px 0;">
+<p><strong>Don't panic if setup doesn't work the first time.</strong> Even experienced developers spend time fixing their setups. If you get stuck, ask your instructor or classmates and include a screenshot.</p>
+</div>
+
+<h3>Option 1: Google Colab (recommended, nothing to install)</h3>
+<p>Google Colab lets you write and run Python in your web browser. It works on any computer, including Chromebooks.</p>
+<ol>
+<li>Go to <a href="https://colab.research.google.com" target="_blank" rel="noopener">colab.research.google.com</a> and sign in with a Google account (a free Gmail account works).</li>
+<li>Click <strong>New notebook</strong>.</li>
+<li>Click inside the empty cell and type:</li>
+</ol>
+<pre style="background:#f4f4f4; padding:12px; border-radius:6px;"><code>print("Hello! My Python environment is working!")</code></pre>
+<ol start="4">
+<li>Press <strong>Shift + Enter</strong> to run the cell. You should see this output below it:</li>
+</ol>
+<pre style="background:#f4f4f4; padding:12px; border-radius:6px;"><code>Hello! My Python environment is working!</code></pre>
+<p>That's your first Python output!</p>
+
+<h4>Notebook basics</h4>
+<ul>
+<li><strong>Cell:</strong> the box where you type code. A notebook can have many cells, and you can run each one separately.</li>
+<li><strong>Shift + Enter:</strong> runs the current cell.</li>
+<li><strong>+ Code:</strong> adds a new code cell.</li>
+<li><strong>Saving:</strong> when you open one of the book's notebooks, go to <strong>File → Save a copy in Drive</strong> so your changes are saved to your own Google Drive.</li>
+</ul>
+
+<h3>Option 2: Install Python on your computer (optional for now)</h3>
+<p>If you want Python on your own computer, Chapter 2 walks you through every step. Here's the short version:</p>
+<ol>
+<li><strong>Install Anaconda</strong> from <a href="https://www.anaconda.com/download" target="_blank" rel="noopener">anaconda.com/download</a>. It installs Python plus Jupyter Notebook in one go.</li>
+<li><strong>Check that it worked.</strong> Open <em>Anaconda Prompt</em> (Windows) or <em>Terminal</em> (Mac) and type:
+<pre style="background:#f4f4f4; padding:12px; border-radius:6px;"><code>conda --version</code></pre>
+If you see a version number (like <code>conda 23.7.4</code>) and not an error, it worked.</li>
+<li><strong>Launch Jupyter Notebook</strong> by typing:
+<pre style="background:#f4f4f4; padding:12px; border-radius:6px;"><code>jupyter notebook</code></pre>
+Your browser opens the Jupyter dashboard. Click <strong>New → Python 3</strong> to create a notebook.</li>
+<li><strong>Install VS Code</strong> from <a href="https://code.visualstudio.com" target="_blank" rel="noopener">code.visualstudio.com</a>, then install the <strong>Python</strong> extension by Microsoft from the Extensions panel.</li>
+</ol>
+<p><em>You'll need Option 2 by Module 11 (GUIs), because GUI programs don't run in Colab. Installing early is a good idea.</em></p>
+
+<h3>Your first real Python script</h3>
+<p>In Colab (or VS Code), type this program exactly as shown and run it:</p>
+<pre style="background:#f4f4f4; padding:12px; border-radius:6px;"><code>name = input("Hey there! What is your name? ")
+age = input("Nice to meet you! How old are you? ")
+print("So your name is " + name + " and you are " + age + " years old.")
+print("Welcome to Python, " + name + "! This is going to be a great journey.")</code></pre>
+<p>Python will stop and wait for you to type your name, then your age. Then it prints a personal message.</p>
+
+<h4>What each line does</h4>
+<ul>
+<li><strong>Line 1:</strong> <code>input()</code> pauses the program and waits for you to type. Whatever you type is stored in a <strong>variable</strong> called <code>name</code>. A variable is a container that holds information for later.</li>
+<li><strong>Line 2:</strong> Same idea. Your age is stored in the variable <code>age</code>.</li>
+<li><strong>Line 3:</strong> <code>print()</code> displays a message. The <code>+</code> joins pieces of text together. This is called <strong>concatenation</strong>.</li>
+<li><strong>Line 4:</strong> Prints a personalized welcome using the <code>name</code> variable.</li>
+</ul>
+
+<h3>Try it now</h3>
+<p>Open the <a href="https://colab.research.google.com/github/Arjun96DS/python-unlocked/blob/main/part1-python-foundations/ch02_setting_up_your_environment.ipynb" target="_blank" rel="noopener">Chapter 2 notebook in Google Colab</a> and run each cell with <strong>Shift + Enter</strong>.</p>
+
+<h3>Practice</h3>
+<ol>
+<li>Change the script so it also asks for your <strong>favorite food</strong>, then prints one sentence that includes your name, age, and favorite food.</li>
+<li>Write a new program that asks <strong>five</strong> different questions and prints all five answers together in one summary sentence at the end.</li>
+<li>In a new notebook, make the first cell print your full name and the second cell ask for your city using <code>input()</code>. Run both cells.</li>
+</ol>
+
+<nav class="pager" aria-label="Previous and next page"><a href="../m01/1-1-welcome-to-python.html" rel="prev"><small>Previous</small>1.1 Welcome to Python</a><a href="../m01/1-3-variables-and-data-types.html" rel="next" style="text-align:right"><small>Next</small>1.3 Variables and Data Types</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

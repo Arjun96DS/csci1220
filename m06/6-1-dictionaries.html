@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>6.1 Dictionaries | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 6 – Dictionaries, Sets and Comprehensions</a></nav></div></header>
+<main id="main">
+<h1>6.1 Dictionaries</h1>
+<p><strong>Read:</strong> <em>Python Unlocked</em>, Chapter 6, "Dictionaries"</p>
+<p>A <strong>dictionary</strong> stores data as <strong>key: value</strong> pairs. Instead of looking things up by position (like a list), you look them up by a meaningful key, just like looking up a word in a real dictionary.</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>student = {
+    "name": "Priya Sharma",
+    "age": 22,
+    "course": "Computer Science",
+    "gpa": 3.85,
+}
+print(student["name"])     # Priya Sharma
+print(student["gpa"])      # 3.85</code></pre>
+<h3>Safe lookups with get()</h3><p><code>student["phone"]</code> crashes with a <code>KeyError</code> if the key doesn't exist. <code>get()</code> doesn't:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>student = {"name": "Priya Sharma", "age": 22}
+print(student.get("phone"))                    # None
+print(student.get("phone", "Not provided"))    # Not provided</code></pre>
+<h3>Adding, updating, and removing</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>student = {"name": "Priya Sharma", "age": 22, "is_active": True}
+student["email"] = "priya@example.com"   # add a new key
+student["age"] = 23                      # update an existing key
+student.pop("is_active")                 # remove a key
+del student["email"]                     # another way to remove
+print(student)
+print("age" in student)                  # check whether a key exists: True</code></pre>
+<h3>Looping through a dictionary</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>prices = {"coffee": 3.50, "bagel": 2.25, "smoothie": 6.75}
+for item, price in prices.items():
+    print(f"{item}: ${price:.2f}")
+print(list(prices.keys()))
+print(sum(prices.values()))</code></pre>
+<h3>Counting with a dictionary</h3><p>A classic pattern. <code>get(key, 0)</code> starts each count at zero:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>votes = ["tacos", "pizza", "tacos", "sushi", "tacos", "pizza"]
+counts = {}
+for vote in votes:
+    counts[vote] = counts.get(vote, 0) + 1
+print(counts)    # {'tacos': 3, 'pizza': 2, 'sushi': 1}</code></pre>
+<h3>Nested dictionaries</h3><p>A value can itself be a dictionary. This is how real data (like JSON from a web API) is usually shaped:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>classroom = {
+    "S001": {"name": "Priya", "score": 88},
+    "S002": {"name": "Rahul", "score": 72},
+    "S003": {"name": "Sneha", "score": 95},
+}
+for student_id, info in classroom.items():
+    print(f"{student_id} - {info['name']}: {info['score']}")</code></pre>
+<h3>Check your understanding</h3>
+<ol><li>What's the difference between <code>d["x"]</code> and <code>d.get("x")</code> when <code>"x"</code> isn't a key?</li><li>Write code that counts how many times each letter appears in a word.</li><li>When would you use a dictionary instead of a list?</li></ol>
+
+<nav class="pager" aria-label="Previous and next page"><a href="../m06/index.html" rel="prev"><small>Previous</small>Module 6 – Dictionaries, Sets and Comprehensions</a><a href="../m06/6-2-sets.html" rel="next" style="text-align:right"><small>Next</small>6.2 Sets</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

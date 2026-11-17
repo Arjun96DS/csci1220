@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3.2 Return Values and Lambda Functions | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 3 – Functions and Scope</a></nav></div></header>
+<main id="main">
+<h1>3.2 Return Values and Lambda Functions</h1>
+<p><strong>Read:</strong> <em>Python Unlocked</em>, Chapter 5, "Return Values" and "Lambda Functions"</p>
+<h3>Returning a value</h3><p><code>print()</code> only shows a value. <code>return</code> <strong>hands the value back</strong> so the rest of your program can use it:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>def calculate_area(length, width):
+    area = length * width
+    return area
+
+result = calculate_area(12, 8)
+print(f"The area is: {result} square meters")</code></pre>
+<div style="background:#fff4e5; border-left:5px solid #f29900; padding:12px; border-radius:6px; margin:12px 0;"><p>A very common bug: printing inside a function when you meant to return. If a function only prints, <code>result = my_function()</code> stores <code>None</code>.</p></div>
+<h3>Functions that return different kinds of values</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>def get_full_name(first, last):
+    return first + " " + last
+
+def is_adult(age):
+    return age &gt;= 18          # returns True or False
+
+def calculate_grade(score):
+    if score &gt;= 90:
+        return "A"
+    elif score &gt;= 80:
+        return "B"
+    elif score &gt;= 70:
+        return "C"
+    else:
+        return "F"
+
+print(get_full_name("Arjun", "Sunke"))
+print(is_adult(30))
+print(calculate_grade(85))</code></pre>
+<h3>Returning more than one value</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>def get_min_max(numbers):
+    return min(numbers), max(numbers)
+
+lowest, highest = get_min_max([78, 92, 45, 88, 61, 99, 53])
+print(f"Lowest: {lowest}, Highest: {highest}")</code></pre>
+<h3>A real-world example: final price with discount and tax</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>def calculate_final_price(original_price, discount_percent, tax_percent):
+    discount_amount = original_price * (discount_percent / 100)
+    discounted_price = original_price - discount_amount
+    tax_amount = discounted_price * (tax_percent / 100)
+    return discounted_price + tax_amount
+
+print(f"Laptop: ${calculate_final_price(1000, 10, 7.875):.2f}")
+print(f"Headphones: ${calculate_final_price(199, 0, 7.875):.2f}")</code></pre>
+<h3>Lambda functions (short, one-line functions)</h3><p>A <code>lambda</code> is a tiny unnamed function. It's most useful for telling <code>sorted()</code> how to sort:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>square = lambda x: x * x
+print(square(5))
+
+students = [{"name": "Priya", "score": 88}, {"name": "Rahul", "score": 72}, {"name": "Sneha", "score": 95}]
+ranked = sorted(students, key=lambda s: s["score"], reverse=True)
+for s in ranked:
+    print(f"{s['name']}: {s['score']}")</code></pre>
+<div style="background:#e8f4fd; border-left:5px solid #1a73e8; padding:12px; border-radius:6px; margin:12px 0;"><p>Don't worry if the <code>{"name": ...}</code> syntax looks new. Those are dictionaries, which you'll learn in Module 6.</p></div>
+<h3>Check your understanding</h3>
+<ol><li>What does a function return if it has no <code>return</code> statement?</li><li>Write <code>to_fahrenheit(celsius)</code> that returns <code>celsius * 9 / 5 + 32</code>.</li><li>Write a function that returns both the total and the average of a list of numbers.</li></ol>
+
+<nav class="pager" aria-label="Previous and next page"><a href="../m03/3-1-defining-functions-and-parameters.html" rel="prev"><small>Previous</small>3.1 Defining Functions and Parameters</a><a href="../m03/3-3-understanding-scope.html" rel="next" style="text-align:right"><small>Next</small>3.3 Understanding Scope</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

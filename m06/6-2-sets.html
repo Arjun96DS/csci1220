@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>6.2 Sets | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 6 – Dictionaries, Sets and Comprehensions</a></nav></div></header>
+<main id="main">
+<h1>6.2 Sets</h1>
+<p><strong>Read:</strong> <em>Python Unlocked</em>, Chapter 6, "Sets"</p>
+<p>A <strong>set</strong> is a collection of <strong>unique</strong> items with no duplicates and no particular order. Sets are perfect for removing duplicates and comparing groups.</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>fruits = {"apple", "banana", "mango", "apple", "banana"}
+print(fruits)        # duplicates are removed automatically
+print(len(fruits))   # 3</code></pre>
+<h3>Removing duplicates from a list</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>visitors = ["10.0.4.21", "10.0.4.57", "10.0.4.21", "10.0.7.12", "10.0.4.57"]
+unique_visitors = set(visitors)
+print(f"{len(visitors)} visits from {len(unique_visitors)} unique IP addresses")</code></pre>
+<h3>Adding and removing</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>skills = {"Python", "SQL"}
+skills.add("Linux")
+skills.add("Python")          # already there, so nothing changes
+skills.discard("Excel")       # no error even if it isn't there
+print(skills)</code></pre>
+<h3>Set operations: comparing groups</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>python_students = {"Priya", "Rahul", "Sneha", "Vikram"}
+cloud_students = {"Rahul", "Ananya", "Sneha", "Meera"}
+
+print(python_students | cloud_students)   # union: in either class
+print(python_students &amp; cloud_students)   # intersection: in both classes
+print(python_students - cloud_students)   # difference: only in Python
+print(python_students ^ cloud_students)   # in one class but not both</code></pre>
+<table style="border-collapse:collapse; width:100%;" border="1" cellpadding="8"><thead><tr style="background:#f4f4f4;"><th>Operator</th><th>Name</th><th>Real-world question it answers</th></tr></thead><tbody><tr><td><code>|</code></td><td>Union</td><td>Who is in <em>either</em> group?</td></tr><tr><td><code>&amp;</code></td><td>Intersection</td><td>Who is in <em>both</em> groups?</td></tr><tr><td><code>-</code></td><td>Difference</td><td>Who is in the first group but <em>not</em> the second?</td></tr><tr><td><code>^</code></td><td>Symmetric difference</td><td>Who is in exactly one group?</td></tr></tbody></table>
+<div style="background:#fff4e5; border-left:5px solid #f29900; padding:12px; border-radius:6px; margin:12px 0;"><p><code>{}</code> creates an empty <strong>dictionary</strong>, not a set. For an empty set, use <code>set()</code>.</p></div>
+<h3>Check your understanding</h3>
+<ol><li>What does <code>len(set([1, 1, 2, 3, 3, 3]))</code> return?</li><li>Two teams list the software they use. How do you find software used by both teams?</li><li>Why can't you get <code>my_set[0]</code>?</li></ol>
+
+<nav class="pager" aria-label="Previous and next page"><a href="../m06/6-1-dictionaries.html" rel="prev"><small>Previous</small>6.1 Dictionaries</a><a href="../m06/6-3-list-and-dictionary-comprehensions.html" rel="next" style="text-align:right"><small>Next</small>6.3 List and Dictionary Comprehensions</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

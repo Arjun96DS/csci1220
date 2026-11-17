@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3.1 Defining Functions and Parameters | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 3 – Functions and Scope</a></nav></div></header>
+<main id="main">
+<h1>3.1 Defining Functions and Parameters</h1>
+<p><strong>Read:</strong> <em>Python Unlocked</em>, Chapter 5, "Defining Functions" through "Keyword Arguments"</p>
+<p>A <strong>function</strong> is a named block of code you can run whenever you need it. Functions let you write something once and reuse it, and they break big programs into small, understandable pieces.</p><p>You've already used built-in functions like <code>print()</code>, <code>input()</code>, and <code>len()</code>. Now you'll write your own.</p><h3>Defining and calling a function</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>def greet():
+    print("Hello! Welcome to Python.")
+    print("We are glad you are here.")
+
+greet()   # call it once
+greet()   # call it again</code></pre>
+<ul><li><code>def</code> starts the definition, followed by the name, parentheses, and a colon.</li><li>The indented lines are the function's body.</li><li>Defining a function doesn't run it. <strong>Calling</strong> it (<code>greet()</code>) does.</li></ul><h3>Parameters: giving a function information</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>def introduce(name, age, city):
+    print(f"Hi, my name is {name}. I am {age} years old and I live in {city}.")
+
+introduce("Arjun", 30, "Albuquerque")
+introduce("Maria", 25, "Santa Fe")</code></pre>
+<p><code>name</code>, <code>age</code>, and <code>city</code> are <strong>parameters</strong> (placeholders). The values you pass in are <strong>arguments</strong>.</p><h3>Default values</h3><p>A parameter can have a default that's used when no argument is given:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>def greet_person(name, language="English"):
+    if language == "English":
+        print(f"Hello {name}!")
+    elif language == "Spanish":
+        print(f"Hola {name}!")
+    elif language == "Hindi":
+        print(f"Namaste {name}!")
+
+greet_person("Arjun")              # uses the default: English
+greet_person("Carlos", "Spanish")</code></pre>
+<h3>Keyword arguments</h3><p>You can name the arguments when calling, so the order doesn't matter. This makes calls easier to read:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>def introduce(name, age, city):
+    print(f"Hi, my name is {name}. I am {age} years old and I live in {city}.")
+
+introduce(age=28, city="Las Cruces", name="Vikram")</code></pre>
+<h3>Check your understanding</h3>
+<ol><li>What's the difference between a parameter and an argument?</li><li>Write a function <code>print_box(word)</code> that prints the word with a line of dashes above and below it.</li><li>Add a default parameter <code>times=1</code> to <code>greet()</code> so it prints the greeting that many times.</li></ol>
+
+<nav class="pager" aria-label="Previous and next page"><a href="../m03/index.html" rel="prev"><small>Previous</small>Module 3 – Functions and Scope</a><a href="../m03/3-2-return-values-and-lambda-functions.html" rel="next" style="text-align:right"><small>Next</small>3.2 Return Values and Lambda Functions</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

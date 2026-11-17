@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>7.2 Appending and Working with CSV Data | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 7 – Working with Files</a></nav></div></header>
+<main id="main">
+<h1>7.2 Appending and Working with CSV Data</h1>
+<p><strong>Read:</strong> <em>Python Unlocked</em>, Chapter 7, "Appending to a File" and "A Practical File Example"</p>
+<h3>Appending</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>with open("students.txt", "a") as file:
+    file.write("Karan Mehta - Score: 91\n")
+print("New record added!")</code></pre>
+<h3>Making sure a file exists</h3><p>Reading a file that doesn't exist crashes your program. A simple trick: open it in append mode first, which creates an empty file if needed and changes nothing if it already exists:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>open("expenses.csv", "a").close()   # creates the file only if it's missing
+with open("expenses.csv", "r") as file:
+    print(f"{len(file.readlines())} lines in the file")</code></pre>
+<h3>CSV: the most common data file format</h3><p><strong>CSV</strong> (comma-separated values) stores one record per line, with fields separated by commas. Excel and Google Sheets can open it, and almost every system can export it.</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>students_data = [("Priya Sharma", 88), ("Rahul Verma", 72), ("Sneha Patel", 95), ("Vikram Singh", 81)]
+
+# Save as CSV
+with open("scores.csv", "w") as file:
+    for name, score in students_data:
+        file.write(f"{name},{score}\n")
+
+# Read it back and calculate the average
+total = 0
+count = 0
+with open("scores.csv", "r") as file:
+    for line in file:
+        name, score = line.strip().split(",")
+        total += int(score)
+        count += 1
+        print(f"{name}: {score}")
+print(f"Class average: {total / count:.2f}")</code></pre>
+<div style="background:#fff4e5; border-left:5px solid #f29900; padding:12px; border-radius:6px; margin:12px 0;"><p>Everything you read from a file is a <strong>string</strong>. Convert numbers with <code>int()</code> or <code>float()</code> before doing math, just like with <code>input()</code>.</p></div>
+<h3>Going further: the csv module</h3><p>Real CSV files can contain commas inside a field (like <code>"Albuquerque, NM"</code>). Python's built-in <code>csv</code> module handles that correctly:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>import csv
+
+with open("contacts.csv", "w", newline="") as file:
+    writer = csv.writer(file)
+    writer.writerow(["name", "city"])
+    writer.writerow(["Maria Garcia", "Albuquerque, NM"])
+
+with open("contacts.csv", "r", newline="") as file:
+    for row in csv.reader(file):
+        print(row)</code></pre>
+<h3>Try it now</h3>
+<p>Open the <a href="https://colab.research.google.com/github/Arjun96DS/python-unlocked/blob/main/part1-python-foundations/ch07_files_and_errors.ipynb" target="_blank" rel="noopener">Chapter 7 notebook in Google Colab</a> and run the cells for this section with <strong>Shift + Enter</strong>.</p>
+<h3>Practice</h3><ol><li>Write a program that keeps asking for to-do items (until the user types <code>done</code>) and appends each one to <code>todo.txt</code>. Then print the full list, numbered.</li><li>Save five products and prices to <code>products.csv</code>. Read the file back and print only the products that cost more than $20.</li></ol>
+<nav class="pager" aria-label="Previous and next page"><a href="../m07/7-1-writing-and-reading-files.html" rel="prev"><small>Previous</small>7.1 Writing and Reading Files</a><a href="../m08/index.html" rel="next" style="text-align:right"><small>Next</small>Module 8 – Handling Errors and Exceptions</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

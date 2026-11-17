@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>11.2 Getting Input and Laying Out a Form | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 11 – Graphical User Interfaces</a></nav></div></header>
+<main id="main">
+<h1>11.2 Getting Input and Laying Out a Form</h1>
+<p><em>This module isn't covered in Python Unlocked. These pages are your reading.</em></p><div style="background:#fff4e5; border-left:5px solid #f29900; padding:12px; border-radius:6px; margin:12px 0;"><p><strong>Important:</strong> GUI programs open a window on your computer, so they <strong>do not run in Google Colab</strong>. For this module, use Python installed on your computer (Anaconda from Module 1 includes everything you need) and run your code in VS Code or IDLE. If you haven't installed Python yet, follow Option 2 on page 1.2.</p></div>
+<h3>Getting text from the user: Entry</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>import tkinter as tk
+
+def greet():
+    name = name_entry.get()           # read what the user typed
+    result.config(text=f"Hello, {name}!")
+
+window = tk.Tk()
+window.title("Greeter")
+tk.Label(window, text="Your name:").pack()
+name_entry = tk.Entry(window, width=25)
+name_entry.pack(pady=5)
+tk.Button(window, text="Greet", command=greet).pack(pady=5)
+result = tk.Label(window, text="")
+result.pack(pady=5)
+window.mainloop()</code></pre>
+<p>Like <code>input()</code>, <code>entry.get()</code> always returns a <strong>string</strong>.</p><h3>Layout with grid()</h3><p><code>pack()</code> stacks widgets. <code>grid()</code> places them in rows and columns, which is better for forms:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>import tkinter as tk
+
+def calculate():
+    bill = float(bill_entry.get())
+    tip_pct = float(tip_entry.get())
+    people = int(people_entry.get())
+    total = bill * (1 + tip_pct / 100)
+    result.config(text=f"Total: ${total:.2f}  |  Each: ${total / people:.2f}")
+
+window = tk.Tk()
+window.title("Tip Calculator")
+
+tk.Label(window, text="Bill ($):").grid(row=0, column=0, sticky="e", padx=5, pady=5)
+bill_entry = tk.Entry(window)
+bill_entry.grid(row=0, column=1, padx=5)
+
+tk.Label(window, text="Tip (%):").grid(row=1, column=0, sticky="e", padx=5, pady=5)
+tip_entry = tk.Entry(window)
+tip_entry.insert(0, "18")                       # default value
+tip_entry.grid(row=1, column=1, padx=5)
+
+tk.Label(window, text="People:").grid(row=2, column=0, sticky="e", padx=5, pady=5)
+people_entry = tk.Entry(window)
+people_entry.insert(0, "1")
+people_entry.grid(row=2, column=1, padx=5)
+
+tk.Button(window, text="Calculate", command=calculate).grid(row=3, column=0, columnspan=2, pady=10)
+result = tk.Label(window, text="", font=("Arial", 12))
+result.grid(row=4, column=0, columnspan=2, pady=5)
+
+window.mainloop()</code></pre>
+<ul><li><code>row</code> and <code>column</code> start at 0.</li><li><code>sticky="e"</code> aligns to the right (east) side of the cell.</li><li><code>columnspan=2</code> lets a widget stretch across two columns.</li><li><code>entry.insert(0, "18")</code> puts a default value in the box.</li></ul><div style="background:#e8f4fd; border-left:5px solid #1a73e8; padding:12px; border-radius:6px; margin:12px 0;"><p>Don't mix <code>pack()</code> and <code>grid()</code> in the same window. Pick one.</p></div>
+<h3>Check your understanding</h3>
+<ol><li>What does <code>entry.get()</code> return if the user types 42?</li><li>What happens in the tip calculator if the user types "abc" for the bill? (You'll fix that on the next page.)</li><li>Add a fourth row to the tip calculator for a discount coupon amount.</li></ol>
+
+<nav class="pager" aria-label="Previous and next page"><a href="../m11/11-1-your-first-gui-window.html" rel="prev"><small>Previous</small>11.1 Your First GUI Window</a><a href="../m11/11-3-more-widgets-and-error-pop-ups.html" rel="next" style="text-align:right"><small>Next</small>11.3 More Widgets and Error Pop-ups</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

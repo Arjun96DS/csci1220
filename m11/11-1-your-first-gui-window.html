@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>11.1 Your First GUI Window | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 11 – Graphical User Interfaces</a></nav></div></header>
+<main id="main">
+<h1>11.1 Your First GUI Window</h1>
+<p><em>This module isn't covered in Python Unlocked. These pages are your reading.</em></p><div style="background:#fff4e5; border-left:5px solid #f29900; padding:12px; border-radius:6px; margin:12px 0;"><p><strong>Important:</strong> GUI programs open a window on your computer, so they <strong>do not run in Google Colab</strong>. For this module, use Python installed on your computer (Anaconda from Module 1 includes everything you need) and run your code in VS Code or IDLE. If you haven't installed Python yet, follow Option 2 on page 1.2.</p></div>
+<p>A <strong>GUI</strong> (graphical user interface) is a program with windows, buttons, and text boxes instead of typed commands. Python can build GUIs with several frameworks:</p><table style="border-collapse:collapse; width:100%;" border="1" cellpadding="8"><thead><tr style="background:#f4f4f4;"><th>Framework</th><th>Good for</th><th>Install</th></tr></thead><tbody><tr><td><strong>tkinter</strong></td><td>Simple desktop apps; perfect for learning</td><td>Built in to Python</td></tr><tr><td>PyQt / PySide</td><td>Professional desktop apps</td><td><code>pip install pyside6</code></td></tr><tr><td>Kivy</td><td>Mobile and touch apps</td><td><code>pip install kivy</code></td></tr><tr><td>Flask / Django</td><td>Web apps in a browser</td><td><code>pip install flask</code></td></tr><tr><td>Streamlit</td><td>Data dashboards</td><td><code>pip install streamlit</code></td></tr></tbody></table>
+<p>We'll use <strong>tkinter</strong> because it's built in and the concepts carry over to every other framework.</p><h3>Plan before you code: sketch it</h3><p>Professional developers sketch the screen first (on paper or with a tool like Figma). Draw boxes for each part of the window and label them: <em>title text, input box, button, result area</em>. Then build it piece by piece.</p><h3>Your first window</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>import tkinter as tk
+
+window = tk.Tk()                     # create the main window
+window.title("My First App")         # text in the title bar
+window.geometry("320x150")           # width x height in pixels
+
+label = tk.Label(window, text="Hello, CNM!", font=("Arial", 18))
+label.pack(pady=20)                  # place it in the window
+
+window.mainloop()                    # keep the window open and listening</code></pre>
+<h3>Line by line</h3><ul><li><code>tk.Tk()</code> creates the window. Every tkinter app has exactly one.</li><li><strong>Widgets</strong> are the pieces: <code>Label</code> (text), <code>Button</code>, <code>Entry</code> (text box), and more.</li><li><code>pack()</code> places a widget in the window. <code>pady</code> adds space above and below.</li><li><code>mainloop()</code> starts the <strong>event loop</strong>: the program waits for clicks and key presses. Code after it doesn't run until the window closes.</li></ul><h3>Adding a button</h3><p>A button runs a function when clicked. Pass the function name <strong>without parentheses</strong>:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>import tkinter as tk
+
+clicks = 0
+
+def on_click():
+    global clicks
+    clicks += 1
+    label.config(text=f"Clicked {clicks} times")   # change the label's text
+
+window = tk.Tk()
+window.title("Click Counter")
+label = tk.Label(window, text="Clicked 0 times", font=("Arial", 14))
+label.pack(pady=10)
+tk.Button(window, text="Click me!", command=on_click).pack(pady=10)
+window.mainloop()</code></pre>
+<div style="background:#fff4e5; border-left:5px solid #f29900; padding:12px; border-radius:6px; margin:12px 0;"><p><code>command=on_click()</code> (with parentheses) runs the function once at start-up instead of on each click. Use <code>command=on_click</code>.</p></div>
+<h3>Check your understanding</h3>
+<ol><li>What does <code>mainloop()</code> do?</li><li>Change the click counter so it also has a Reset button.</li><li>Sketch a simple app you'd find useful. What widgets would it need?</li></ol>
+
+<nav class="pager" aria-label="Previous and next page"><a href="../m11/index.html" rel="prev"><small>Previous</small>Module 11 – Graphical User Interfaces</a><a href="../m11/11-2-getting-input-and-laying-out-a-form.html" rel="next" style="text-align:right"><small>Next</small>11.2 Getting Input and Laying Out a Form</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

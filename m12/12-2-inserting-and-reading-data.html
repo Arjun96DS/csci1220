@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>12.2 Inserting and Reading Data | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 12 – Databases with SQLite</a></nav></div></header>
+<main id="main">
+<h1>12.2 Inserting and Reading Data</h1>
+<p><em>This module isn't covered in Python Unlocked. These pages are your reading.</em></p><h3>Inserting data: always use ? placeholders</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>import sqlite3
+conn = sqlite3.connect("school.db")
+cur = conn.cursor()
+cur.execute("CREATE TABLE IF NOT EXISTS students (id INTEGER PRIMARY KEY, name TEXT NOT NULL, major TEXT, gpa REAL)")
+cur.execute("DELETE FROM students")      # start fresh for this example
+
+cur.execute("INSERT INTO students (name, major, gpa) VALUES (?, ?, ?)",
+            ("Priya", "Computer Science", 3.85))
+
+more = [("Rahul", "Cybersecurity", 3.42), ("Sneha", "Cloud Computing", 3.91), ("Vikram", "Cybersecurity", 3.10)]
+cur.executemany("INSERT INTO students (name, major, gpa) VALUES (?, ?, ?)", more)
+conn.commit()
+print(f"{cur.rowcount} rows inserted by executemany")
+conn.close()</code></pre>
+<div style="background:#fff4e5; border-left:5px solid #f29900; padding:12px; border-radius:6px; margin:12px 0;"><p><strong>Never</strong> build SQL by gluing strings together, like <code>f"... WHERE name = '{name}'"</code>. A user could type SQL code into your input and delete or steal your data. This is called <strong>SQL injection</strong>, and it's one of the most common security holes in real websites. The <code>?</code> placeholders make input safe.</p></div>
+<h3>Reading data: SELECT</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>import sqlite3
+conn = sqlite3.connect("school.db")
+cur = conn.cursor()
+
+cur.execute("SELECT name, major, gpa FROM students ORDER BY gpa DESC")
+rows = cur.fetchall()            # a list of tuples
+for name, major, gpa in rows:
+    print(f"{name:&lt;8}{major:&lt;18}{gpa:.2f}")
+
+cur.execute("SELECT name FROM students WHERE major = ?", ("Cybersecurity",))
+print([row[0] for row in cur.fetchall()])
+
+cur.execute("SELECT COUNT(*), AVG(gpa) FROM students")
+count, avg = cur.fetchone()      # just one row
+print(f"{count} students, average GPA {avg:.2f}")
+conn.close()</code></pre>
+<table style="border-collapse:collapse; width:100%;" border="1" cellpadding="8"><thead><tr style="background:#f4f4f4;"><th>SQL</th><th>Meaning</th></tr></thead><tbody><tr><td><code>SELECT name, gpa FROM students</code></td><td>get these columns from this table</td></tr><tr><td><code>WHERE gpa &gt;= 3.5</code></td><td>only rows that match</td></tr><tr><td><code>ORDER BY gpa DESC</code></td><td>sort, highest first</td></tr><tr><td><code>COUNT(*)</code>, <code>AVG(gpa)</code>, <code>SUM()</code></td><td>summary calculations</td></tr><tr><td><code>fetchall()</code> / <code>fetchone()</code></td><td>(Python) get all rows / one row</td></tr></tbody></table>
+<div style="background:#e8f4fd; border-left:5px solid #1a73e8; padding:12px; border-radius:6px; margin:12px 0;"><p>Notice the trailing comma in <code>("Cybersecurity",)</code>. Placeholder values must be a tuple, even when there's only one (remember Module 4).</p></div>
+<h3>Check your understanding</h3>
+<ol><li>Why is using <code>?</code> placeholders important?</li><li>Write a SELECT that lists students with a GPA of 3.5 or higher, sorted by name.</li><li>What's the difference between <code>fetchall()</code> and <code>fetchone()</code>?</li></ol>
+
+<nav class="pager" aria-label="Previous and next page"><a href="../m12/12-1-what-is-a-database.html" rel="prev"><small>Previous</small>12.1 What Is a Database</a><a href="../m12/12-3-updating-deleting-and-organizing-database-code.html" rel="next" style="text-align:right"><small>Next</small>12.3 Updating, Deleting and Organizing Database Code</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

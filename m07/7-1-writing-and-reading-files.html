@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>7.1 Writing and Reading Files | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 7 – Working with Files</a></nav></div></header>
+<main id="main">
+<h1>7.1 Writing and Reading Files</h1>
+<p><strong>Read:</strong> <em>Python Unlocked</em>, Chapter 7, "Reading and Writing Files"</p>
+<p>Every variable you've used so far disappears when your program ends. <strong>Files</strong> let your data survive: save it today, load it tomorrow. This is called <strong>persistence</strong>.</p><h3>File modes</h3><table style="border-collapse:collapse; width:100%;" border="1" cellpadding="8"><thead><tr style="background:#f4f4f4;"><th>Mode</th><th>Meaning</th><th>If the file doesn't exist</th><th>If it does exist</th></tr></thead><tbody><tr><td><code>"r"</code></td><td>read</td><td>error</td><td>reads it</td></tr><tr><td><code>"w"</code></td><td>write</td><td>creates it</td><td><strong>erases it</strong> and starts fresh</td></tr><tr><td><code>"a"</code></td><td>append</td><td>creates it</td><td>adds to the end</td></tr></tbody></table>
+<h3>Writing a file</h3><p>Always use <code>with</code>. It closes the file for you automatically, even if something goes wrong:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>with open("students.txt", "w") as file:
+    file.write("Priya Sharma - Score: 88\n")
+    file.write("Rahul Verma - Score: 72\n")
+    file.write("Sneha Patel - Score: 95\n")
+print("File written successfully!")</code></pre>
+<div style="background:#e8f4fd; border-left:5px solid #1a73e8; padding:12px; border-radius:6px; margin:12px 0;"><p><code>write()</code> does not add a new line for you. End each line with <code>\n</code> (the newline character).</p></div>
+<h3>Reading the whole file</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>with open("students.txt", "r") as file:
+    content = file.read()
+print(content)</code></pre>
+<h3>Reading line by line</h3><p>Best for large files. <code>strip()</code> removes the <code>\n</code> at the end of each line:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>with open("students.txt", "r") as file:
+    for line in file:
+        print(line.strip())</code></pre>
+<h3>Reading all lines into a list</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>with open("students.txt", "r") as file:
+    lines = file.readlines()
+print(f"Total records: {len(lines)}")
+print(f"First record: {lines[0].strip()}")
+print(f"Last record: {lines[-1].strip()}")</code></pre>
+<div style="background:#fff4e5; border-left:5px solid #f29900; padding:12px; border-radius:6px; margin:12px 0;"><p><strong>Colab note:</strong> files you create in Colab live in a temporary folder (click the 📁 <strong>Files</strong> icon on the left to see them). They're deleted when the session ends, so download anything you want to keep.</p></div>
+<h3>Check your understanding</h3>
+<ol><li>Which mode would you use to add a new entry to an existing log file without erasing it?</li><li>Why is <code>with open(...)</code> better than <code>open()</code> plus <code>close()</code>?</li><li>Write a program that saves three of your favorite movies to <code>movies.txt</code>, one per line, then reads them back and numbers them.</li></ol>
+
+<nav class="pager" aria-label="Previous and next page"><a href="../m07/index.html" rel="prev"><small>Previous</small>Module 7 – Working with Files</a><a href="../m07/7-2-appending-and-working-with-csv-data.html" rel="next" style="text-align:right"><small>Next</small>7.2 Appending and Working with CSV Data</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

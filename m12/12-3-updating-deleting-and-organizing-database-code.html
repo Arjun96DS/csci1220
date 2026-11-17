@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>12.3 Updating, Deleting and Organizing Database Code | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 12 – Databases with SQLite</a></nav></div></header>
+<main id="main">
+<h1>12.3 Updating, Deleting and Organizing Database Code</h1>
+<p><em>This module isn't covered in Python Unlocked. These pages are your reading.</em></p><h3>Updating and deleting</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>import sqlite3
+conn = sqlite3.connect("school.db")
+cur = conn.cursor()
+
+cur.execute("UPDATE students SET gpa = ? WHERE name = ?", (3.55, "Rahul"))
+print(f"Updated {cur.rowcount} row(s)")
+
+cur.execute("DELETE FROM students WHERE name = ?", ("Vikram",))
+print(f"Deleted {cur.rowcount} row(s)")
+conn.commit()
+conn.close()</code></pre>
+<div style="background:#fff4e5; border-left:5px solid #f29900; padding:12px; border-radius:6px; margin:12px 0;"><p>An <code>UPDATE</code> or <code>DELETE</code> <strong>without a WHERE clause</strong> changes or deletes <em>every row</em> in the table. Always double-check your WHERE.</p></div>
+<p><code>cur.rowcount</code> tells you how many rows were affected. If it's 0, nothing matched, which is useful for telling the user "not found".</p><h3>Grouping: summary reports</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>import sqlite3
+conn = sqlite3.connect("school.db")
+cur = conn.cursor()
+cur.execute("SELECT major, COUNT(*), ROUND(AVG(gpa), 2) FROM students GROUP BY major")
+for major, count, avg in cur.fetchall():
+    print(f"{major}: {count} student(s), average GPA {avg}")
+conn.close()</code></pre>
+<h3>Organizing database code with functions</h3><p>Real programs wrap each database action in a function, and catch database errors with <code>try/except</code>:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>import sqlite3
+
+DB = "school.db"
+
+def add_student(name, major, gpa):
+    with sqlite3.connect(DB) as conn:        # commits automatically if no error
+        conn.execute("INSERT INTO students (name, major, gpa) VALUES (?, ?, ?)", (name, major, gpa))
+
+def find_by_major(major):
+    with sqlite3.connect(DB) as conn:
+        return conn.execute("SELECT name, gpa FROM students WHERE major = ?", (major,)).fetchall()
+
+add_student("Ananya", "Cloud Computing", 3.70)
+print(find_by_major("Cloud Computing"))</code></pre>
+<h3>Using a class to hold the data</h3><p>You can turn each row into an object (Module 9) so the rest of your program works with clean objects instead of tuples:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>import sqlite3
+
+class Student:
+    def __init__(self, id, name, major, gpa):
+        self.id, self.name, self.major, self.gpa = id, name, major, gpa
+
+    def __str__(self):
+        return f"#{self.id} {self.name} ({self.major}) GPA {self.gpa:.2f}"
+
+with sqlite3.connect("school.db") as conn:
+    rows = conn.execute("SELECT id, name, major, gpa FROM students").fetchall()
+students = [Student(*row) for row in rows]     # * unpacks the tuple into arguments
+for s in students:
+    print(s)</code></pre>
+<div style="background:#e8f4fd; border-left:5px solid #1a73e8; padding:12px; border-radius:6px; margin:12px 0;"><p>Want to look inside your <code>.db</code> file? The free <a href="https://sqlitebrowser.org" target="_blank" rel="noopener">DB Browser for SQLite</a> lets you open it and browse the tables like a spreadsheet.</p></div>
+<h3>Practice</h3><ol><li>Create a <code>books</code> table, insert five books, and print the ones published after 2000, newest first.</li><li>Write a menu program that can add a book, list all books, and delete a book by id (tell the user if the id wasn't found).</li></ol>
+<nav class="pager" aria-label="Previous and next page"><a href="../m12/12-2-inserting-and-reading-data.html" rel="prev"><small>Previous</small>12.2 Inserting and Reading Data</a><span></span></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

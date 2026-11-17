@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>11.4 Sending Your Work to GitHub from Your Computer | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 11 – Graphical User Interfaces</a></nav></div></header>
+<main id="main">
+<h1>11.4 Sending Your Work to GitHub from Your Computer</h1>
+<p>Since Module 11 you have Python and VS Code on your computer. Now you can send your work to GitHub straight from VS Code instead of uploading files in the browser. This is how developers work every day.</p>
+
+<h3>Step 1: Install Git</h3>
+<ul>
+<li><strong>Windows:</strong> download from <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">git-scm.com/downloads</a> and run the installer. The default options are fine.</li>
+<li><strong>Mac:</strong> open <em>Terminal</em> and type <code>git --version</code>. If Git isn't installed, your Mac offers to install it. Click <strong>Install</strong>.</li>
+</ul>
+<p>Close and reopen VS Code afterward.</p>
+
+<h3>Step 2: Tell Git who you are (once)</h3>
+<p>In VS Code, open <strong>Terminal → New Terminal</strong> and run these two commands with <em>your</em> name and the email on your GitHub account:</p>
+<pre style="background:#f4f4f4; padding:12px; border-radius:6px;"><code>git config --global user.name "Your Name"
+git config --global user.email "you@example.com"</code></pre>
+<ul>
+<li><code>user.name</code> is the name shown on your commits.</li>
+<li><code>user.email</code> links your commits to your GitHub account.</li>
+<li><code>--global</code> means "use these settings for every project on this computer."</li>
+</ul>
+
+<h3>Step 3: Download your course repo (once)</h3>
+<ol>
+<li>In VS Code, press <strong>Ctrl + Shift + P</strong> (Mac: <strong>Cmd + Shift + P</strong>), type <code>Git: Clone</code>, and press Enter.</li>
+<li>Choose <strong>Clone from GitHub</strong>. VS Code opens your browser so you can sign in. Click <strong>Authorize</strong>.</li>
+<li>Pick your <code>csci1220-python</code> repo, choose a folder (for example <em>Documents</em>), and click <strong>Open</strong>.</li>
+</ol>
+<p>You now have a copy of your repo on your computer, with all your earlier modules in it.</p>
+
+<h3>Step 4: Save and send your work</h3>
+<p>Create your files for the module in a new folder, such as <code>module-11</code>. Then, in the VS Code terminal:</p>
+<pre style="background:#f4f4f4; padding:12px; border-radius:6px;"><code>git status
+git add module-11
+git commit -m "Add Module 11 password generator"
+git push</code></pre>
+<table style="border-collapse:collapse; width:100%;" border="1" cellpadding="8"><thead><tr style="background:#f4f4f4;"><th>Command</th><th>What it does</th></tr></thead><tbody>
+<tr><td><code>git status</code></td><td>Shows which files are new or changed since your last commit</td></tr>
+<tr><td><code>git add module-11</code></td><td>Chooses what goes into the next snapshot (here, the whole module-11 folder)</td></tr>
+<tr><td><code>git commit -m "..."</code></td><td>Saves the snapshot on your computer with a message</td></tr>
+<tr><td><code>git push</code></td><td>Uploads your commits to GitHub</td></tr>
+</tbody></table>
+<p>Refresh your repo on GitHub: your folder and commit message are there. Submit the folder's link in Brightspace exactly as before.</p>
+<div style="background:#e8f4fd; border-left:5px solid #1a73e8; padding:12px; border-radius:6px; margin:12px 0;"><p><strong>Prefer buttons?</strong> VS Code's <strong>Source Control</strong> panel (the branch icon on the left) does the same thing: <strong>+</strong> stages a file, the message box and <strong>Commit</strong> button commit, and <strong>Sync Changes</strong> pushes.</p></div>
+
+<h3>Changed something on GitHub's website?</h3>
+<p>If you uploaded or edited files in the browser, bring those changes to your computer before you start working:</p>
+<pre style="background:#f4f4f4; padding:12px; border-radius:6px;"><code>git pull</code></pre>
+
+<h3>Check your understanding</h3>
+<ol>
+<li>What's the difference between <code>git commit</code> and <code>git push</code>?</li>
+<li>Which command shows what you've changed?</li>
+<li>Rewrite this commit message so it's useful: <code>stuff</code>.</li>
+</ol>
+
+<nav class="pager" aria-label="Previous and next page"><a href="../m11/11-3-more-widgets-and-error-pop-ups.html" rel="prev"><small>Previous</small>11.3 More Widgets and Error Pop-ups</a><a href="../m12/index.html" rel="next" style="text-align:right"><small>Next</small>Module 12 – Databases with SQLite</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

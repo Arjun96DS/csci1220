@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>5.3 Formatting Output with f-strings | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 5 – Working with Strings</a></nav></div></header>
+<main id="main">
+<h1>5.3 Formatting Output with f-strings</h1>
+<p><strong>Read:</strong> <em>Python Unlocked</em>, Chapter 3, "Print and Input" (f-strings)</p>
+<p>Good output is part of good software. f-strings can control decimals, commas, and alignment so your reports look professional.</p><h3>Number formatting</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>price = 1234.5
+rate = 0.0725
+print(f"Price: ${price:.2f}")       # 2 decimal places   -&gt; $1234.50
+print(f"Price: ${price:,.2f}")      # with comma         -&gt; $1,234.50
+print(f"Tax rate: {rate:.1%}")      # as a percentage    -&gt; 7.2%
+print(f"Order #{42:05d}")           # pad with zeros     -&gt; 00042</code></pre>
+<h3>Alignment: building tables</h3><p>Inside <code>{ }</code>, <code>&lt;</code> means left-align, <code>&gt;</code> means right-align, and the number is the column width:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>items = [("Laptop", 899.99), ("Mouse", 24.5), ("USB-C Hub", 39)]
+print(f"{'Item':&lt;12}{'Price':&gt;10}")
+print("-" * 22)
+for name, cost in items:
+    print(f"{name:&lt;12}{cost:&gt;10.2f}")</code></pre>
+<pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>Item             Price
+----------------------
+Laptop          899.99
+Mouse            24.50
+USB-C Hub        39.00</code></pre>
+<h3>Old-style formatting you may see online</h3><p>Older code uses <code>%</code> or <code>.format()</code>. You don't need to write these, but you should recognize them:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>name, score = "Priya", 92.456
+print("%s scored %.1f" % (name, score))          # old % style
+print("{} scored {:.1f}".format(name, score))    # .format() style
+print(f"{name} scored {score:.1f}")              # f-string (use this one)</code></pre>
+<h3>Practice</h3><ol><li>Ask for a full name and print it as "Last, First" in title case, no matter how the user typed it.</li><li>Ask for an email address and check it has exactly one <code>@</code> and ends with <code>.com</code>, <code>.edu</code>, or <code>.org</code>.</li><li>Print a receipt for three items with names left-aligned and prices right-aligned, with a total at the bottom.</li></ol>
+<nav class="pager" aria-label="Previous and next page"><a href="../m05/5-2-string-methods.html" rel="prev"><small>Previous</small>5.2 String Methods</a><a href="../m06/index.html" rel="next" style="text-align:right"><small>Next</small>Module 6 – Dictionaries, Sets and Comprehensions</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

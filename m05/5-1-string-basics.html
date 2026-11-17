@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>5.1 String Basics | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 5 – Working with Strings</a></nav></div></header>
+<main id="main">
+<h1>5.1 String Basics</h1>
+<p><strong>Read:</strong> <em>Python Unlocked</em>, Chapter 3, "Strings" (review)</p>
+<p>Almost every program works with text: names, emails, file names, log messages, web data. In Python, text is a <strong>string</strong> (<code>str</code>). This module goes deeper than Module 1.</p><h3>Strings are sequences</h3><p>A string is an ordered sequence of characters, so indexing and slicing work exactly like lists:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>word = "Albuquerque"
+print(word[0])      # A
+print(word[-1])     # e
+print(word[0:4])    # Albu
+print(word[::-1])   # euqreuqublA
+print(len(word))    # 11</code></pre>
+<h3>Strings are immutable</h3><p>You can't change a single character of a string. You build a <em>new</em> string instead:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>name = "python"
+# name[0] = "P"           # TypeError: strings can't be changed
+name = "P" + name[1:]     # build a new string instead
+print(name)               # Python</code></pre>
+<h3>Joining and repeating</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>first = "Ada"
+last = "Lovelace"
+print(first + " " + last)   # concatenation
+print("-" * 30)             # repetition: a line of 30 dashes
+print("ha" * 3)             # hahaha</code></pre>
+<h3>Looping through characters</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>password = "Sunset#River42"
+digits = 0
+for ch in password:
+    if ch.isdigit():
+        digits += 1
+print(f"{password} contains {digits} digits")</code></pre>
+<h3>Checking what a string contains</h3><table style="border-collapse:collapse; width:100%;" border="1" cellpadding="8"><thead><tr style="background:#f4f4f4;"><th>Method</th><th>True when...</th><th>Example</th></tr></thead><tbody><tr><td><code>.isdigit()</code></td><td>all characters are digits</td><td><code>"2026".isdigit()</code> → True</td></tr><tr><td><code>.isalpha()</code></td><td>all characters are letters</td><td><code>"abc".isalpha()</code> → True</td></tr><tr><td><code>.isupper()</code> / <code>.islower()</code></td><td>all letters are upper/lower case</td><td><code>"NM".isupper()</code> → True</td></tr><tr><td><code>.startswith(x)</code> / <code>.endswith(x)</code></td><td>it begins/ends with x</td><td><code>"report.pdf".endswith(".pdf")</code> → True</td></tr><tr><td><code>x in text</code></td><td>x appears anywhere</td><td><code>"@" in "a@b.com"</code> → True</td></tr></tbody></table>
+<h3>Check your understanding</h3>
+<ol><li>What is <code>"Python"[1:4]</code>?</li><li>Why does <code>name[0] = "J"</code> fail on a string?</li><li>Write a loop that counts the vowels in a word the user enters.</li></ol>
+
+<nav class="pager" aria-label="Previous and next page"><a href="../m05/index.html" rel="prev"><small>Previous</small>Module 5 – Working with Strings</a><a href="../m05/5-2-string-methods.html" rel="next" style="text-align:right"><small>Next</small>5.2 String Methods</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

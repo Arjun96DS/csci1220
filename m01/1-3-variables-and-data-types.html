@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1.3 Variables and Data Types | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 1 – Getting Started &amp; Python Basics</a></nav></div></header>
+<main id="main">
+<h1>1.3 Variables and Data Types</h1>
+<p><strong>Read:</strong> <em>Python Unlocked</em>, Chapter 3 (Variables and Data Types)</p>
+
+<h3>What is a variable?</h3>
+<p>A <strong>variable</strong> is a named container that stores a value so you can use it later. You create one with the <code>=</code> sign:</p>
+<pre style="background:#f4f4f4; padding:12px; border-radius:6px;"><code>name = "Arjun"
+age = 30
+height = 5.11
+is_student = True
+print(name)
+print(age)
+print(height)
+print(is_student)</code></pre>
+<p><strong>Read it as:</strong> "store <code>"Arjun"</code> in the variable <code>name</code>." The <code>=</code> means <em>assign</em>, not "equals" like in math.</p>
+
+<h4>Naming rules</h4>
+<ul>
+<li>Use letters, numbers, and underscores: <code>first_name</code>, <code>score2</code></li>
+<li>Can't start with a number: <code>2score</code> ❌</li>
+<li>No spaces: <code>first name</code> ❌</li>
+<li>Names are case-sensitive: <code>Age</code> and <code>age</code> are different variables</li>
+</ul>
+
+<h3>The four basic data types</h3>
+<table style="border-collapse:collapse; width:100%;" border="1" cellpadding="8">
+<thead><tr style="background:#f4f4f4;"><th>Type</th><th>What it stores</th><th>Examples</th></tr></thead>
+<tbody>
+<tr><td><code>str</code> (string)</td><td>Text, inside quotes</td><td><code>"Hello"</code>, <code>"Albuquerque"</code></td></tr>
+<tr><td><code>int</code> (integer)</td><td>Whole numbers</td><td><code>30</code>, <code>-5</code>, <code>100</code></td></tr>
+<tr><td><code>float</code></td><td>Numbers with a decimal point</td><td><code>3.85</code>, <code>72.5</code></td></tr>
+<tr><td><code>bool</code> (boolean)</td><td>True or False</td><td><code>True</code>, <code>False</code></td></tr>
+</tbody>
+</table>
+
+<h3>Strings</h3>
+<p>Strings hold text. You can join them with <code>+</code>, count their characters with <code>len()</code>, and change their case:</p>
+<pre style="background:#f4f4f4; padding:12px; border-radius:6px;"><code>first_name = "Arjun"
+last_name = "Sunke"
+greeting = "Hello, welcome to Python!"
+
+full_name = first_name + " " + last_name
+print(full_name)          # Arjun Sunke
+print(len(greeting))      # 25
+print(greeting.upper())   # HELLO, WELCOME TO PYTHON!
+print(greeting.lower())   # hello, welcome to python!</code></pre>
+
+<h3>Integers and floats</h3>
+<pre style="background:#f4f4f4; padding:12px; border-radius:6px;"><code>students = 30        # int
+temperature = -5     # int
+gpa = 3.85           # float
+weight = 72.5        # float</code></pre>
+<p>You can convert between them:</p>
+<pre style="background:#f4f4f4; padding:12px; border-radius:6px;"><code>x = 10
+print(float(x))   # 10.0
+
+z = 3.99
+print(int(z))     # 3  (int() cuts off the decimal, it does NOT round)</code></pre>
+
+<h3>Booleans</h3>
+<p>A boolean is either <code>True</code> or <code>False</code> (capital T and F). Comparisons produce booleans:</p>
+<pre style="background:#f4f4f4; padding:12px; border-radius:6px;"><code>is_raining = True
+print(is_raining)   # True
+print(10 &gt; 5)       # True
+print(10 == 10)     # True
+print(10 != 5)      # True</code></pre>
+
+<h3>Checking a value's type</h3>
+<p>Not sure what type something is? Ask Python with <code>type()</code>:</p>
+<pre style="background:#f4f4f4; padding:12px; border-radius:6px;"><code>print(type("Hello"))   # &lt;class 'str'&gt;
+print(type(42))        # &lt;class 'int'&gt;
+print(type(3.14))      # &lt;class 'float'&gt;
+print(type(True))      # &lt;class 'bool'&gt;</code></pre>
+
+<h3>Check your understanding</h3>
+<ol>
+<li>What data type is <code>"42"</code>? What about <code>42</code>?</li>
+<li>What does <code>int(9.99)</code> give you?</li>
+<li>Which of these is a valid variable name: <code>my score</code>, <code>my_score</code>, <code>1score</code>?</li>
+</ol>
+
+<nav class="pager" aria-label="Previous and next page"><a href="../m01/1-2-setting-up-your-environment.html" rel="prev"><small>Previous</small>1.2 Setting Up Your Environment</a><a href="../m01/1-4-operators.html" rel="next" style="text-align:right"><small>Next</small>1.4 Operators</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

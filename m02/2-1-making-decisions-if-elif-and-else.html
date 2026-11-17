@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2.1 Making Decisions – if, elif and else | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 2 – Control Flow</a></nav></div></header>
+<main id="main">
+<h1>2.1 Making Decisions – if, elif and else</h1>
+<p><strong>Read:</strong> <em>Python Unlocked</em>, Chapter 4, "if, elif, and else" and "Nested if Statements"</p>
+<p>So far, your programs run every line from top to bottom. Real programs need to <strong>make decisions</strong>: show a different message, charge a different price, or deny access. That is what <code>if</code> statements do.</p><h3>The if statement</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>age = 20
+if age &gt;= 18:
+    print("You are old enough to vote.")</code></pre>
+<p>Two rules beginners miss:</p><ul><li>The <code>if</code> line ends with a <strong>colon</strong> <code>:</code></li><li>The code that belongs to the <code>if</code> is <strong>indented</strong> (4 spaces). Python uses indentation, not brackets, to know which lines are inside the <code>if</code>.</li></ul><h3>if ... else</h3><p><code>else</code> runs when the condition is <code>False</code>:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>age = 15
+if age &gt;= 18:
+    print("You are old enough to vote.")
+else:
+    print("Sorry, you are not old enough to vote yet.")</code></pre>
+<h3>elif: checking several options</h3><p>Python checks each condition from the top and runs <strong>only the first one</strong> that is <code>True</code>:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>score = 75
+if score &gt;= 90:
+    print("Grade: A")
+elif score &gt;= 80:
+    print("Grade: B")
+elif score &gt;= 70:
+    print("Grade: C")
+elif score &gt;= 60:
+    print("Grade: D")
+else:
+    print("Grade: F")</code></pre>
+<div style="background:#e8f4fd; border-left:5px solid #1a73e8; padding:12px; border-radius:6px; margin:12px 0;"><p>Order matters. If you checked <code>score >= 60</code> first, a score of 95 would get a D, because Python stops at the first match.</p></div>
+<h3>Combining conditions</h3><p>Use <code>and</code> / <code>or</code> from Module 1 inside an <code>if</code>:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>username = input("Enter your username: ")
+password = input("Enter your password: ")
+if username == "admin" and password == "python123":
+    print("Login successful. Welcome back, Admin!")
+elif username == "admin" and password != "python123":
+    print("Wrong password. Please try again.")
+else:
+    print("Username not recognized.")</code></pre>
+<h3>Nested if statements</h3><p>You can put an <code>if</code> inside another <code>if</code>. Each level is indented further:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>is_member = True
+account_balance = 250
+if is_member:
+    if account_balance &gt;= 500:
+        print("You qualify for our premium rewards program.")
+    elif account_balance &gt;= 200:
+        print("You qualify for our standard rewards program.")
+    else:
+        print("Add more funds to qualify for rewards.")
+else:
+    print("Please create a membership account first.")</code></pre>
+<div style="background:#fff4e5; border-left:5px solid #f29900; padding:12px; border-radius:6px; margin:12px 0;"><p><strong>Common mistakes:</strong> forgetting the colon, inconsistent indentation (<code>IndentationError</code>), and writing <code>=</code> (store) instead of <code>==</code> (compare).</p></div>
+<h3>Check your understanding</h3>
+<ol><li>What does this print if <code>score = 85</code>, using the grade example above?</li><li>Why does the order of <code>elif</code> conditions matter?</li><li>Rewrite the voting example so it also prints "You can run for president" when age is 35 or older.</li></ol>
+
+<nav class="pager" aria-label="Previous and next page"><a href="../m02/index.html" rel="prev"><small>Previous</small>Module 2 – Control Flow</a><a href="../m02/2-2-for-loops-and-range.html" rel="next" style="text-align:right"><small>Next</small>2.2 for Loops and range</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

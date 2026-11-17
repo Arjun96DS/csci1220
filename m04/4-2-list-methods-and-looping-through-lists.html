@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>4.2 List Methods and Looping Through Lists | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 4 – Lists and Tuples</a></nav></div></header>
+<main id="main">
+<h1>4.2 List Methods and Looping Through Lists</h1>
+<p><strong>Read:</strong> <em>Python Unlocked</em>, Chapter 6, "Useful List Methods", "Looping Through Lists", "Checking Membership"</p>
+<h3>Useful built-in functions and methods</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>numbers = [5, 2, 8, 1, 9, 3, 7, 4, 6]
+print(len(numbers))       # 9 items
+print(sum(numbers))       # 45
+print(min(numbers), max(numbers))   # 1 9
+print(sum(numbers) / len(numbers))  # average: 5.0
+print(numbers.count(5))   # how many 5s: 1
+print(numbers.index(9))   # position of 9: 4</code></pre>
+<h3>Sorting</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>scores = [72, 95, 88, 61, 79]
+print(sorted(scores))                 # new sorted list; original unchanged
+print(sorted(scores, reverse=True))   # highest first
+scores.sort()                         # sorts the list itself
+print(scores)
+top_three = sorted(scores, reverse=True)[:3]
+print(f"Top 3: {top_three}")</code></pre>
+<div style="background:#e8f4fd; border-left:5px solid #1a73e8; padding:12px; border-radius:6px; margin:12px 0;"><p><code>sorted(list)</code> returns a <em>new</em> list. <code>list.sort()</code> changes the <em>original</em> list and returns <code>None</code>.</p></div>
+<h3>Looping through lists</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>students = ["Priya", "Rahul", "Sneha"]
+for student in students:
+    print(f"Hello {student}!")
+
+# enumerate() gives you the position AND the item
+for index, student in enumerate(students, start=1):
+    print(f"{index}. {student}")
+
+# zip() walks through two lists side by side
+scores = [88, 72, 95]
+for name, score in zip(students, scores):
+    print(f"{name} scored {score}")</code></pre>
+<h3>Building a new list in a loop</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>temperatures = [68, 75, 91, 88, 102, 79, 95]
+hot_days = []
+for t in temperatures:
+    if t &gt;= 90:
+        hot_days.append(t)
+print(f"Hot days: {hot_days} ({len(hot_days)} of {len(temperatures)})")</code></pre>
+<h3>Checking membership with in</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>allowed_users = ["mgarcia", "jsmith", "akumar"]
+user = "jsmith"
+if user in allowed_users:
+    print("Access granted")
+print("bwayne" not in allowed_users)   # True</code></pre>
+<h3>Check your understanding</h3>
+<ol><li>What does <code>sorted([3, 1, 2], reverse=True)</code> return?</li><li>Write a loop that builds a list of only the passing scores (70 or higher) from a list of scores.</li><li>How would you print a numbered list of tasks starting at 1?</li></ol>
+
+<nav class="pager" aria-label="Previous and next page"><a href="../m04/4-1-lists-indexing-slicing-and-changing-items.html" rel="prev"><small>Previous</small>4.1 Lists – Indexing, Slicing and Changing Items</a><a href="../m04/4-3-tuples.html" rel="next" style="text-align:right"><small>Next</small>4.3 Tuples</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

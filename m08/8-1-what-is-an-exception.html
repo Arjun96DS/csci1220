@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>8.1 What Is an Exception | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 8 – Handling Errors and Exceptions</a></nav></div></header>
+<main id="main">
+<h1>8.1 What Is an Exception</h1>
+<p><strong>Read:</strong> <em>Python Unlocked</em>, Chapter 7, "try and except"</p>
+<p>An <strong>exception</strong> is an error that happens while your program is running: the user types "ten" instead of 10, a file is missing, or you divide by zero. If you don't handle it, your program crashes.</p><h3>Reading an error message (traceback)</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>age = int("ten")</code></pre>
+<pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>Traceback (most recent call last):
+  File "main.py", line 1, in &lt;module&gt;
+    age = int("ten")
+ValueError: invalid literal for int() with base 10: 'ten'</code></pre>
+<p>Read tracebacks from the <strong>bottom up</strong>: the last line tells you the exception type (<code>ValueError</code>) and what went wrong. The line above it shows exactly which line of code caused it.</p><h3>Common built-in exceptions</h3><table style="border-collapse:collapse; width:100%;" border="1" cellpadding="8"><thead><tr style="background:#f4f4f4;"><th>Exception</th><th>Happens when...</th><th>Example</th></tr></thead><tbody><tr><td><code>ValueError</code></td><td>a value has the right type but a bad value</td><td><code>int("ten")</code></td></tr><tr><td><code>TypeError</code></td><td>an operation gets the wrong type</td><td><code>"5" + 3</code></td></tr><tr><td><code>ZeroDivisionError</code></td><td>dividing by zero</td><td><code>10 / 0</code></td></tr><tr><td><code>IndexError</code></td><td>a list index doesn't exist</td><td><code>[1, 2][5]</code></td></tr><tr><td><code>KeyError</code></td><td>a dictionary key doesn't exist</td><td><code>{"a": 1}["b"]</code></td></tr><tr><td><code>FileNotFoundError</code></td><td>opening a file that isn't there</td><td><code>open("nope.txt")</code></td></tr><tr><td><code>NameError</code></td><td>using a variable that wasn't created</td><td><code>print(totl)</code></td></tr></tbody></table>
+<h3>Handling an exception with try / except</h3><p>Put risky code in <code>try</code>. If an exception happens, Python jumps to <code>except</code> instead of crashing:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>try:
+    result = 10 / 0
+except ZeroDivisionError:
+    print("Error: You cannot divide by zero!")
+print("The program keeps running.")</code></pre>
+<div style="background:#fff4e5; border-left:5px solid #f29900; padding:12px; border-radius:6px; margin:12px 0;"><p>Always name the exception you expect (<code>except ValueError:</code>). A bare <code>except:</code> catches <em>everything</em>, including typos in your own code, which hides bugs.</p></div>
+<h3>The most useful pattern: validating input</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>while True:
+    try:
+        quantity = int(input("How many tickets? "))
+        break                        # only reached if int() worked
+    except ValueError:
+        print("Please enter a whole number, like 3.")
+print(f"Booking {quantity} tickets.")</code></pre>
+<h3>Check your understanding</h3>
+<ol><li>Which exception does <code>int("3.5")</code> raise?</li><li>Why should you avoid a bare <code>except:</code>?</li><li>Wrap the Module 3 cloud estimator's <code>int(input(...))</code> calls so a typo doesn't crash the program.</li></ol>
+
+<nav class="pager" aria-label="Previous and next page"><a href="../m08/index.html" rel="prev"><small>Previous</small>Module 8 – Handling Errors and Exceptions</a><a href="../m08/8-2-multiple-exceptions-else-and-finally.html" rel="next" style="text-align:right"><small>Next</small>8.2 Multiple Exceptions, else and finally</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

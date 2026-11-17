@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>8.2 Multiple Exceptions, else and finally | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 8 – Handling Errors and Exceptions</a></nav></div></header>
+<main id="main">
+<h1>8.2 Multiple Exceptions, else and finally</h1>
+<p><strong>Read:</strong> <em>Python Unlocked</em>, Chapter 7, "Catching Multiple Exceptions" through "Handling File Errors"</p>
+<h3>Catching different exceptions differently</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>def divide_numbers(a, b):
+    try:
+        return a / b
+    except ZeroDivisionError:
+        print("Error: Cannot divide by zero!")
+    except TypeError:
+        print("Error: Both values must be numbers!")
+    return None
+
+print(divide_numbers(10, 2))
+print(divide_numbers(10, 0))
+print(divide_numbers(10, "five"))</code></pre>
+<h3>else and finally</h3><ul><li><code>else</code> runs only if <strong>no</strong> exception happened.</li><li><code>finally</code> <strong>always</strong> runs. It's used for cleanup, like closing connections or printing "done".</li></ul><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>try:
+    number = int(input("Enter a number: "))
+    result = 100 / number
+except ValueError:
+    print("That is not a valid number!")
+except ZeroDivisionError:
+    print("Cannot divide by zero!")
+else:
+    print(f"Result: {result}")
+finally:
+    print("Program finished. This always runs.")</code></pre>
+<h3>Getting the error message with as</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>try:
+    file = open("nonexistent_file.txt", "r")
+except FileNotFoundError as error:
+    print(f"File error occurred: {error}")</code></pre>
+<h3>Handling file errors</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>filename = input("Enter the filename to read: ")
+try:
+    with open(filename, "r") as file:
+        print(file.read())
+except FileNotFoundError:
+    print(f"Sorry, the file '{filename}' does not exist.")
+except PermissionError:
+    print(f"Sorry, you do not have permission to read '{filename}'.")</code></pre>
+<h3>Check your understanding</h3>
+<ol><li>When does the <code>else</code> block run? When does <code>finally</code> run?</li><li>Write a program that asks for a filename and keeps asking until it finds a file that exists.</li><li>What does <code>error</code> contain in <code>except ValueError as error:</code>?</li></ol>
+
+<nav class="pager" aria-label="Previous and next page"><a href="../m08/8-1-what-is-an-exception.html" rel="prev"><small>Previous</small>8.1 What Is an Exception</a><a href="../m08/8-3-raising-your-own-exceptions.html" rel="next" style="text-align:right"><small>Next</small>8.3 Raising Your Own Exceptions</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

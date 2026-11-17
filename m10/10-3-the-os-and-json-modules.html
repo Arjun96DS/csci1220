@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10.3 The os and json Modules | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 10 – Useful Python Libraries</a></nav></div></header>
+<main id="main">
+<h1>10.3 The os and json Modules</h1>
+<p><strong>Read:</strong> <em>Python Unlocked</em>, Chapter 9, "The os Module" and "The json Module"</p>
+<h3>The os module: working with files and folders</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>import os
+print(os.getcwd())                          # current folder
+os.makedirs("reports", exist_ok=True)       # create a folder (no error if it exists)
+path = os.path.join("reports", "november.txt")   # builds a correct path on any OS
+print(path)
+print(os.path.exists(path))                 # does the file exist?
+print(os.listdir("."))                      # what's in this folder?</code></pre>
+<div style="background:#e8f4fd; border-left:5px solid #1a73e8; padding:12px; border-radius:6px; margin:12px 0;"><p><code>os.path.exists()</code> is the clean way to check for a file <em>before</em> opening it, an alternative to catching <code>FileNotFoundError</code>.</p></div>
+<h3>The json module: saving structured data</h3><p><strong>JSON</strong> is the format the web runs on: almost every API sends data as JSON. It looks almost exactly like Python dictionaries and lists, so it's perfect for saving them.</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>import json
+
+student = {"name": "Priya Sharma", "gpa": 3.85, "courses": ["Python", "Cloud"]}
+
+# Python -&gt; JSON text
+text = json.dumps(student, indent=4)
+print(text)
+
+# JSON text -&gt; Python
+data = json.loads('{"name": "Rahul", "gpa": 3.42}')
+print(data["name"])</code></pre>
+<h3>Saving and loading a JSON file</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>import json, os
+
+settings = {"theme": "dark", "volume": 7, "favorites": ["jazz", "lofi"]}
+with open("settings.json", "w") as f:
+    json.dump(settings, f, indent=4)       # save
+
+if os.path.exists("settings.json"):
+    with open("settings.json", "r") as f:
+        loaded = json.load(f)              # load
+    print(loaded["favorites"])</code></pre>
+<table style="border-collapse:collapse; width:100%;" border="1" cellpadding="8"><thead><tr style="background:#f4f4f4;"><th>Function</th><th>Direction</th><th>Works with</th></tr></thead><tbody><tr><td><code>json.dumps()</code></td><td>Python → JSON</td><td>a string</td></tr><tr><td><code>json.loads()</code></td><td>JSON → Python</td><td>a string</td></tr><tr><td><code>json.dump()</code></td><td>Python → JSON</td><td>a file</td></tr><tr><td><code>json.load()</code></td><td>JSON → Python</td><td>a file</td></tr></tbody></table>
+<h3>Try it now</h3>
+<p>Open the <a href="https://colab.research.google.com/github/Arjun96DS/python-unlocked/blob/main/part1-python-foundations/ch09_useful_python_libraries.ipynb" target="_blank" rel="noopener">Chapter 9 notebook in Google Colab</a> and run the cells for this section with <strong>Shift + Enter</strong>.</p>
+<h3>Practice (from Chapter 9)</h3><ol><li>Write a deadline tracker: store tasks with due dates, then print how many days are left for each (OVERDUE / DUE TODAY / days left).</li><li>Save a list of contacts (dictionaries) to <code>contacts.json</code>, then load the file and print each contact.</li><li>Write a function that lists the files in a folder grouped by extension using <code>os.listdir()</code> and <code>os.path.splitext()</code>.</li></ol>
+<nav class="pager" aria-label="Previous and next page"><a href="../m10/10-2-the-datetime-module.html" rel="prev"><small>Previous</small>10.2 The datetime Module</a><a href="../m11/index.html" rel="next" style="text-align:right"><small>Next</small>Module 11 – Graphical User Interfaces</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>5.2 String Methods | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 5 – Working with Strings</a></nav></div></header>
+<main id="main">
+<h1>5.2 String Methods</h1>
+<p><strong>Reference:</strong> the full list is in the <a href="https://docs.python.org/3/library/stdtypes.html#string-methods" target="_blank" rel="noopener">Python documentation for string methods</a>.</p><p>String methods are built-in tools for cleaning, searching, and reshaping text. Because strings are immutable, every method <strong>returns a new string</strong>. It doesn't change the original.</p><h3>Cleaning text</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>raw = "   MGarcia@CNM.edu   "
+clean = raw.strip().lower()     # remove outer spaces, then lowercase
+print(f"[{raw}] -&gt; [{clean}]")
+print("hello world".title())    # Hello World
+print("hello".upper())          # HELLO</code></pre>
+<div style="background:#e8f4fd; border-left:5px solid #1a73e8; padding:12px; border-radius:6px; margin:12px 0;"><p>Always clean user input before comparing it. <code>answer.strip().lower() == "yes"</code> accepts "Yes", " YES ", and "yes".</p></div>
+<h3>Searching: find() and count()</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>email = "mgarcia@cnm.edu"
+at = email.find("@")            # position of @, or -1 if not found
+print(at)                        # 7
+username = email[:at]            # everything before @
+domain = email[at + 1:]          # everything after @
+print(username, domain)
+print("banana".count("a"))       # 3
+print(email.find("#"))           # -1 means not found</code></pre>
+<h3>Replacing text</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>message = "Your order ships Monday. Monday delivery is guaranteed."
+print(message.replace("Monday", "Tuesday"))
+phone = "505-555-0142"
+print(phone.replace("-", ""))    # 5055550142</code></pre>
+<h3>split(): breaking a string into a list</h3><p>This is one of the most useful methods. It's how programs read data files and logs.</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>sentence = "Python is fun to learn"
+words = sentence.split()          # split on spaces
+print(words)
+print(len(words), "words")
+
+record = "Maria,Garcia,Albuquerque,NM"
+parts = record.split(",")         # split on commas
+print(parts[0], parts[2])
+
+line = "2026-10-30 08:16:10 ERROR auth-service Account locked"
+date, time, level, rest = line.split(" ", 3)   # split at most 3 times
+print(level, "|", rest)</code></pre>
+<h3>join(): turning a list back into a string</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>tags = ["python", "beginner", "cnm"]
+print(", ".join(tags))       # python, beginner, cnm
+print("-".join(["2026", "10", "31"]))</code></pre>
+<h3>Check your understanding</h3>
+<ol><li>What does <code>"  Hi There  ".strip().lower()</code> return?</li><li>Given <code>path = "photos/2026/beach.jpg"</code>, how would you get just <code>beach.jpg</code>? (Hint: <code>split("/")</code>)</li><li>What does <code>find()</code> return when the text isn't there?</li></ol>
+
+<nav class="pager" aria-label="Previous and next page"><a href="../m05/5-1-string-basics.html" rel="prev"><small>Previous</small>5.1 String Basics</a><a href="../m05/5-3-formatting-output-with-f-strings.html" rel="next" style="text-align:right"><small>Next</small>5.3 Formatting Output with f-strings</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

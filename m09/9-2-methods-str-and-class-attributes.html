@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9.2 Methods, __str__ and Class Attributes | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 9 – Object-Oriented Programming</a></nav></div></header>
+<main id="main">
+<h1>9.2 Methods, __str__ and Class Attributes</h1>
+<p><strong>Read:</strong> <em>Python Unlocked</em>, Chapter 8, "Methods" and "Class Attributes vs Instance Attributes"</p>
+<h3>Methods: functions that belong to a class</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>class Student:
+    def __init__(self, name, gpa):
+        self.name = name
+        self.gpa = gpa
+        self.courses = []            # every student starts with no courses
+
+    def enroll(self, course_name):
+        self.courses.append(course_name)
+        print(f"{self.name} enrolled in {course_name}.")
+
+    def is_honor_student(self):
+        return self.gpa &gt;= 3.75
+
+student1 = Student("Priya Sharma", 3.85)
+student1.enroll("Python Programming")
+student1.enroll("Cloud Computing")
+print(student1.courses)
+print(student1.is_honor_student())</code></pre>
+<p>Every method's first parameter is <code>self</code>, but you don't pass it when calling. Python fills it in: <code>student1.enroll("Python")</code>.</p><h3>__str__: a readable printout</h3><p>Printing an object normally shows something unhelpful like <code>&lt;__main__.Student object at 0x7f...&gt;</code>. Define <code>__str__</code> to control what <code>print()</code> shows:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>class Student:
+    def __init__(self, name, gpa):
+        self.name = name
+        self.gpa = gpa
+
+    def __str__(self):
+        return f"Student: {self.name} | GPA: {self.gpa}"
+
+print(Student("Priya Sharma", 3.85))</code></pre>
+<p>Methods with double underscores, like <code>__init__</code> and <code>__str__</code>, are called <strong>magic methods</strong> (or "dunder" methods). Python calls them for you at special moments.</p><h3>Class attributes vs instance attributes</h3><p>An <strong>instance attribute</strong> (<code>self.name</code>) is different for each object. A <strong>class attribute</strong> is shared by all objects:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>class Student:
+    school_name = "CNM"          # class attribute: shared
+    total_students = 0
+
+    def __init__(self, name):
+        self.name = name             # instance attribute: one per object
+        Student.total_students += 1
+
+s1 = Student("Priya")
+s2 = Student("Rahul")
+print(s1.school_name, s2.school_name)
+print(f"Total students: {Student.total_students}")</code></pre>
+<h3>Putting it together: a bank account</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>class BankAccount:
+    def __init__(self, holder, balance=0):
+        self.holder = holder
+        self.balance = balance
+        self.transactions = []
+
+    def deposit(self, amount):
+        if amount &lt;= 0:
+            print("Deposit must be greater than zero.")
+            return
+        self.balance += amount
+        self.transactions.append(f"Deposit: ${amount:.2f}")
+
+    def withdraw(self, amount):
+        if amount &gt; self.balance:
+            print("Insufficient funds!")
+            return
+        self.balance -= amount
+        self.transactions.append(f"Withdrawal: ${amount:.2f}")
+
+    def __str__(self):
+        return f"{self.holder}: ${self.balance:.2f}"
+
+account = BankAccount("Maria Garcia", 100)
+account.deposit(250)
+account.withdraw(500)
+account.withdraw(75)
+print(account)
+print(account.transactions)</code></pre>
+<h3>Check your understanding</h3>
+<ol><li>Why don't you pass <code>self</code> when calling a method?</li><li>Add a <code>drop(course_name)</code> method to the Student class that removes a course.</li><li>When should data be a class attribute instead of an instance attribute?</li></ol>
+
+<nav class="pager" aria-label="Previous and next page"><a href="../m09/9-1-classes-objects-and-init.html" rel="prev"><small>Previous</small>9.1 Classes, Objects and __init__</a><a href="../m09/9-3-inheritance.html" rel="next" style="text-align:right"><small>Next</small>9.3 Inheritance</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

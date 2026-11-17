@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1.4 Operators | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 1 – Getting Started &amp; Python Basics</a></nav></div></header>
+<main id="main">
+<h1>1.4 Operators</h1>
+<p><strong>Read:</strong> <em>Python Unlocked</em>, Chapter 3 (Operators)</p>
+<p>Operators are symbols that tell Python to do something with values, like add them, compare them, or combine them.</p>
+
+<h3>Arithmetic operators</h3>
+<pre style="background:#f4f4f4; padding:12px; border-radius:6px;"><code>a = 15
+b = 4
+print(a + b)    # Addition        → 19
+print(a - b)    # Subtraction     → 11
+print(a * b)    # Multiplication  → 60
+print(a / b)    # Division        → 3.75
+print(a // b)   # Floor division  → 3  (whole number part only)
+print(a % b)    # Modulus         → 3  (the remainder)
+print(a ** b)   # Exponent        → 50625  (15 to the power of 4)</code></pre>
+<div style="background:#e8f4fd; border-left:5px solid #1a73e8; padding:12px; border-radius:6px; margin:12px 0;">
+<p><strong>Tip:</strong> <code>%</code> (modulus) is handy for checking whether a number is even: if <code>number % 2</code> is <code>0</code>, the number is even.</p>
+</div>
+
+<h3>Comparison operators</h3>
+<p>These compare two values and always give back <code>True</code> or <code>False</code>:</p>
+<pre style="background:#f4f4f4; padding:12px; border-radius:6px;"><code>x = 10
+y = 20
+print(x == y)   # Equal to              → False
+print(x != y)   # Not equal to          → True
+print(x &gt; y)    # Greater than          → False
+print(x &lt; y)    # Less than             → True
+print(x &gt;= y)   # Greater than or equal → False
+print(x &lt;= y)   # Less than or equal    → True</code></pre>
+<div style="background:#fff4e5; border-left:5px solid #f29900; padding:12px; border-radius:6px; margin:12px 0;">
+<p><strong>Common mistake:</strong> <code>=</code> <em>stores</em> a value. <code>==</code> <em>compares</em> two values.</p>
+</div>
+
+<h3>Logical operators</h3>
+<p>These combine True/False conditions:</p>
+<ul>
+<li><code>and</code>: True only if <strong>both</strong> sides are True</li>
+<li><code>or</code>: True if <strong>at least one</strong> side is True</li>
+<li><code>not</code>: flips True to False and False to True</li>
+</ul>
+<pre style="background:#f4f4f4; padding:12px; border-radius:6px;"><code>age = 25
+has_id = True
+print(age &gt;= 18 and has_id)    # True
+print(age &gt;= 18 or has_id == False)   # True
+print(not has_id)              # False</code></pre>
+<p>A real-world example:</p>
+<pre style="background:#f4f4f4; padding:12px; border-radius:6px;"><code>temperature = 28
+is_weekend = True
+has_sunscreen = False
+can_go_to_beach = temperature &gt; 25 and is_weekend and has_sunscreen == False
+print(can_go_to_beach)   # True</code></pre>
+
+<h3>Assignment operators</h3>
+<p>These are shortcuts for updating a variable:</p>
+<pre style="background:#f4f4f4; padding:12px; border-radius:6px;"><code>score = 100
+score += 10    # same as score = score + 10  → 110
+score -= 5     # same as score = score - 5   → 105
+score *= 2     # same as score = score * 2   → 210
+score //= 3    # same as score = score // 3  → 70
+print(score)</code></pre>
+
+<h3>Check your understanding</h3>
+<ol>
+<li>What is <code>17 % 5</code>? What is <code>17 // 5</code>?</li>
+<li>What does <code>True and False</code> give you? What about <code>True or False</code>?</li>
+<li>If <code>points = 50</code>, what is <code>points</code> after <code>points += 25</code>?</li>
+</ol>
+
+<nav class="pager" aria-label="Previous and next page"><a href="../m01/1-3-variables-and-data-types.html" rel="prev"><small>Previous</small>1.3 Variables and Data Types</a><a href="../m01/1-5-comments-print-and-input.html" rel="next" style="text-align:right"><small>Next</small>1.5 Comments, Print and Input</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

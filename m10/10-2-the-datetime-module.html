@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10.2 The datetime Module | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 10 – Useful Python Libraries</a></nav></div></header>
+<main id="main">
+<h1>10.2 The datetime Module</h1>
+<p><strong>Read:</strong> <em>Python Unlocked</em>, Chapter 9, "The datetime Module"</p>
+<p>Dates and times are everywhere: due dates, timestamps, ages, subscriptions. The <code>datetime</code> module handles them correctly (leap years, month lengths, and so on).</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>from datetime import datetime, date, timedelta
+
+now = datetime.now()
+today = date.today()
+print(now)
+print(today)
+print(now.year, now.month, now.day, now.hour)</code></pre>
+<h3>Creating specific dates</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>from datetime import date, datetime
+graduation = date(2027, 5, 14)
+meeting = datetime(2026, 11, 3, 9, 30)
+print(graduation, meeting)</code></pre>
+<h3>Formatting dates with strftime</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>from datetime import datetime
+moment = datetime(2026, 11, 3, 14, 5)
+print(moment.strftime("%m/%d/%Y"))          # 11/03/2026 (US format)
+print(moment.strftime("%B %d, %Y"))         # November 03, 2026
+print(moment.strftime("%A at %I:%M %p"))    # Tuesday at 02:05 PM</code></pre>
+<table style="border-collapse:collapse; width:100%;" border="1" cellpadding="8"><thead><tr style="background:#f4f4f4;"><th>Code</th><th>Meaning</th><th>Example</th></tr></thead><tbody><tr><td><code>%Y</code></td><td>4-digit year</td><td>2026</td></tr><tr><td><code>%m</code></td><td>month number</td><td>11</td></tr><tr><td><code>%d</code></td><td>day</td><td>03</td></tr><tr><td><code>%B</code></td><td>month name</td><td>November</td></tr><tr><td><code>%A</code></td><td>weekday name</td><td>Tuesday</td></tr><tr><td><code>%I:%M %p</code></td><td>12-hour time</td><td>02:05 PM</td></tr><tr><td><code>%H:%M</code></td><td>24-hour time</td><td>14:05</td></tr></tbody></table>
+<h3>Reading dates from text with strptime</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>from datetime import datetime
+text = "11/03/2026"
+d = datetime.strptime(text, "%m/%d/%Y")
+print(d.strftime("%A"))      # Tuesday</code></pre>
+<h3>Date math with timedelta</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>from datetime import date, timedelta
+today = date(2026, 11, 3)
+print(today + timedelta(days=30))             # 30 days from now
+print(today - timedelta(weeks=2))             # 2 weeks ago
+deadline = date(2026, 12, 12)
+print(f"{(deadline - today).days} days until the deadline")</code></pre>
+<div style="background:#e8f4fd; border-left:5px solid #1a73e8; padding:12px; border-radius:6px; margin:12px 0;"><p>Store dates in files as <code>YYYY-MM-DD</code> text (<code>date.isoformat()</code>). It sorts correctly and converts back easily with <code>date.fromisoformat()</code>.</p></div>
+<h3>Check your understanding</h3>
+<ol><li>How would you print today's date as <code>Tuesday, November 03</code>?</li><li>Write code that prints how many days old you are.</li><li>What type do you get when you subtract one date from another?</li></ol>
+
+<nav class="pager" aria-label="Previous and next page"><a href="../m10/10-1-the-math-and-random-modules.html" rel="prev"><small>Previous</small>10.1 The math and random Modules</a><a href="../m10/10-3-the-os-and-json-modules.html" rel="next" style="text-align:right"><small>Next</small>10.3 The os and json Modules</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>

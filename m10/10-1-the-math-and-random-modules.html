@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10.1 The math and random Modules | Python I · CSCI 1220</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="inner"><a class="home" href="../index.html">Python I · CSCI 1220</a><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">All modules</a> › <a href="index.html">Module 10 – Useful Python Libraries</a></nav></div></header>
+<main id="main">
+<h1>10.1 The math and random Modules</h1>
+<p><strong>Read:</strong> <em>Python Unlocked</em>, Chapter 9, "The math Module" and "The random Module"</p>
+<p>Python comes with a huge <strong>standard library</strong>, ready-made modules for math, dates, files, data formats, and more. People say Python comes with "batteries included". To use a module, <code>import</code> it at the top of your program.</p><h3>Three ways to import</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>import math                     # use as math.sqrt()
+from math import sqrt, pi       # use as sqrt() and pi directly
+import datetime as dt           # give the module a short nickname
+print(math.sqrt(144), sqrt(81), round(pi, 2))</code></pre>
+<h3>The math module</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>import math
+print(math.pi)              # 3.141592653589793
+print(math.sqrt(144))       # 12.0
+print(math.floor(4.7))      # 4  (round down)
+print(math.ceil(4.2))       # 5  (round up)
+print(math.pow(2, 10))      # 1024.0</code></pre>
+<p>Example: how many boxes do you need to ship 250 items if each box holds 24? You can't ship 10.4 boxes, so round <em>up</em>:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>import math
+print(math.ceil(250 / 24))   # 11 boxes</code></pre>
+<h3>The random module</h3><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>import random
+print(random.randint(1, 6))                 # dice roll: 1 to 6
+print(random.random())                      # float from 0.0 to 1.0
+colors = ["red", "green", "blue"]
+print(random.choice(colors))                # one random item
+print(random.sample(range(1, 50), 6))       # 6 unique lottery numbers
+random.shuffle(colors)                      # shuffle in place
+print(colors)</code></pre>
+<p>Setting a <strong>seed</strong> makes "random" results repeatable, which is useful for testing:</p><pre style="background:#f4f4f4; padding:12px; border-radius:6px; overflow-x:auto;"><code>import random
+random.seed(42)
+print(random.randint(1, 100), random.randint(1, 100))
+random.seed(42)
+print(random.randint(1, 100), random.randint(1, 100))   # same two numbers again</code></pre>
+<div style="background:#fff4e5; border-left:5px solid #f29900; padding:12px; border-radius:6px; margin:12px 0;"><p><code>random</code> is fine for games and simulations, but <strong>never</strong> use it for passwords or security tokens, because it's predictable. Use the <code>secrets</code> module instead (you'll see it in Module 11).</p></div>
+<h3>Check your understanding</h3>
+<ol><li>What's the difference between <code>math.floor(7.9)</code> and <code>math.ceil(7.1)</code>?</li><li>Write code that simulates flipping a coin 10 times and counts the heads.</li><li>Why would a programmer set <code>random.seed()</code>?</li></ol>
+
+<nav class="pager" aria-label="Previous and next page"><a href="../m10/index.html" rel="prev"><small>Previous</small>Module 10 – Useful Python Libraries</a><a href="../m10/10-2-the-datetime-module.html" rel="next" style="text-align:right"><small>Next</small>10.2 The datetime Module</a></nav>
+</main>
+<footer>Lessons by Arjun Sunke, Central New Mexico Community College. Textbook: <em>Python Unlocked: From Zero to Machine Learning</em> (Sunke &amp; Gudi). Last updated November 15, 2026.</footer>
+</body>
+</html>
